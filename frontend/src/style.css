@@ -1,0 +1,46 @@
+﻿body{
+  margin:0;
+  background:#050816;
+  color:white;
+  font-family:Arial;
+}
+
+.app{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.hero{
+  text-align:center;
+}
+
+h1{
+  font-size:80px;
+  margin:0;
+  color:#8b5cf6;
+}
+
+p{
+  color:#cbd5e1;
+  font-size:22px;
+}
+
+.pricing{
+  display:flex;
+  gap:20px;
+  justify-content:center;
+  margin-top:40px;
+}
+
+.card{
+  background:#111827;
+  padding:30px;
+  border-radius:20px;
+  width:220px;
+}
+
+.premium{
+  border:2px solid #8b5cf6;
+}
