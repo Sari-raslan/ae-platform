@@ -1,6 +1,6 @@
 # sar.SET Safe Analysis
 
-Analyzed at: 2026-05-27T23:24:37.733Z
+Analyzed at: 2026-05-28T08:17:32.955Z
 Detected brand: Korg
 Files inspected: 147
 Total bytes: 259606448
@@ -24,15 +24,20 @@ This is a directory-based arranger keyboard set. The analyzer only extracts safe
 
 Parser: korg-set-safe-adapter
 STYLE banks: 15
+STYLE slot candidates: 480
+STYLE bank families: FAVORITE, USER
 PAD files: 0
+PAD folder present: yes
 SOUND banks: 5
 PCM files indexed: 99
 SongBook files: 8
+SET graph nodes: 8
+SET graph edges: 7
 Payload decoded: no
 Diagnostics: 1
 Parser log entries: 6
 
-The Phase 3 Korg adapter indexes proprietary containers, chunk candidates, strings, counts, and sizes only. Unknown chunks are tolerated and PCM sample payloads are never decoded.
+The Phase 3 Korg adapter indexes proprietary containers, chunk candidates, strings, style slot candidates, counts, and sizes only. Unknown chunks are tolerated and PCM sample payloads are never decoded.
 
 ## Parser note
 

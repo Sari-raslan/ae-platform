@@ -1,10 +1,10 @@
 ﻿# Phase 3 — Deep Korg Parser Tasks
 
-- [ ] STYLE bank parser
-- [ ] PAD parser
-- [ ] SOUND metadata parser
-- [ ] PCM metadata scanner
-- [ ] SongBook parser
-- [ ] SET dependency graph
-- [ ] Export deep parser JSON
-- [ ] Smoke test with samples/Korg/sar.SET
+- [x] STYLE bank parser
+- [x] PAD parser
+- [x] SOUND metadata parser
+- [x] PCM metadata scanner
+- [x] SongBook parser
+- [x] SET dependency graph
+- [x] Export deep parser JSON
+- [x] Smoke test with samples/Korg/sar.SET

@@ -4,6 +4,7 @@ import path from 'node:path';
 const MAX_METADATA_READ = 256 * 1024;
 const MAX_CHUNK_CANDIDATES = 24;
 const MAX_STRING_CANDIDATES = 40;
+const MAX_STYLE_ENTRY_CANDIDATES = 32;
 
 const KORG_FOLDERS = {
   STYLE: 'style',
@@ -24,6 +25,7 @@ export async function analyzeKorgSetDirectory(targetPath, rootDir, filePaths) {
   const diagnostics = [];
   const logs = [];
   const files = [];
+  const folders = await listSetFolders(targetPath, diagnostics);
 
   for (const filePath of filePaths) {
     try {
@@ -57,11 +59,13 @@ export async function analyzeKorgSetDirectory(targetPath, rootDir, filePaths) {
       unknownFiles: grouped.unknown?.length || 0
     },
     style: await analyzeStyleFiles(grouped.style || [], diagnostics, logs),
-    pad: await analyzePadFiles(grouped.pad || [], diagnostics, logs),
+    pad: await analyzePadFiles(grouped.pad || [], diagnostics, logs, folders),
     sound: await analyzeSoundFiles(grouped.sound || [], diagnostics, logs),
     pcm: await analyzePcmFiles(grouped.pcm || [], diagnostics, logs),
     songBook: await analyzeSongBookFiles(grouped.songbook || [], diagnostics, logs),
     otherFolders: summarizeOtherFolders(grouped),
+    layout: summarizeSetLayout(folders, grouped),
+    dependencyGraph: buildSetDependencyGraph(grouped, folders),
     diagnostics,
     logs
   };
@@ -99,12 +103,14 @@ export function analyzeKorgFile(filePath, buffer, stat, rootDir) {
   }
 
   if (folder === 'style' || extension === '.sty') {
+    const styleEntries = extractStyleEntryCandidates(buffer);
     return {
       ...common,
       style: {
-        bankName: path.basename(filePath, extension),
+        ...deriveStyleBankInfo(path.basename(filePath, extension)),
         structure: inferStructure(buffer, 'style'),
-        nameCandidates: common.strings.slice(0, 24)
+        nameCandidates: styleEntries.map((entry) => entry.name).slice(0, 24),
+        entryCandidates: styleEntries
       }
     };
   }
@@ -148,13 +154,17 @@ async function analyzeStyleFiles(files, diagnostics, logs) {
   for (const file of files) {
     const scan = await scanFileMetadata(file, diagnostics);
     if (scan) {
+      const bankInfo = deriveStyleBankInfo(path.basename(file.name, path.extname(file.name)));
+      const entryCandidates = extractStyleEntryCandidates(scan.buffer);
       banks.push({
         id: file.id,
         name: file.name,
         size: file.size,
-        bank: path.basename(file.name, path.extname(file.name)),
+        ...bankInfo,
         structure: inferStructure(scan.buffer, 'style'),
-        nameCandidates: scan.strings.slice(0, 16),
+        slotCount: entryCandidates.length,
+        nameCandidates: entryCandidates.map((entry) => entry.name).slice(0, 16),
+        entryCandidates,
         chunkCandidates: scan.chunks
       });
     }
@@ -163,13 +173,16 @@ async function analyzeStyleFiles(files, diagnostics, logs) {
   return {
     parser: 'korg-style-bank-safe-scanner',
     bankCount: banks.length,
+    slotCandidateCount: banks.reduce((sum, bank) => sum + bank.slotCount, 0),
+    bankFamilies: summarizeStyleFamilies(banks),
     banks,
-    note: 'STYLE banks are indexed as proprietary containers; names/chunks are candidates only.'
+    note: 'STYLE banks are indexed as proprietary containers; names, slots, offsets, and chunks are candidates only.'
   };
 }
 
-async function analyzePadFiles(files, diagnostics, logs) {
+async function analyzePadFiles(files, diagnostics, logs, folders = []) {
   const pads = [];
+  const folderPresent = folders.includes('PAD');
   for (const file of files) {
     const scan = await scanFileMetadata(file, diagnostics);
     if (scan) {
@@ -183,10 +196,18 @@ async function analyzePadFiles(files, diagnostics, logs) {
       });
     }
   }
-  if (!files.length) diagnostics.push(diagnostic('info', 'pad-folder-empty', 'PAD', 'No PAD files were present in this SET.'));
+  if (!files.length) {
+    diagnostics.push(diagnostic(
+      'info',
+      folderPresent ? 'pad-folder-empty' : 'pad-folder-missing',
+      'PAD',
+      folderPresent ? 'PAD folder is present but contains no PAD files.' : 'No PAD folder or PAD files were present in this SET.'
+    ));
+  }
   logs.push(log('pad-scan', `Scanned ${pads.length} PAD files.`));
   return {
     parser: 'korg-pad-safe-scanner',
+    folderPresent,
     fileCount: pads.length,
     pads,
     note: 'PAD payloads are not decoded; scanner records safe container metadata when files exist.'
@@ -321,6 +342,71 @@ function inferStructure(buffer, kind) {
   };
 }
 
+function deriveStyleBankInfo(bankName) {
+  const match = String(bankName).match(/^([A-Za-z_ -]+?)(\d+)?$/);
+  const bankFamily = match?.[1]?.replace(/[_ -]+$/g, '').toUpperCase() || String(bankName).toUpperCase();
+  const bankNumber = match?.[2] ? Number(match[2]) : null;
+  return {
+    bank: bankName,
+    bankFamily,
+    bankNumber
+  };
+}
+
+function extractStyleEntryCandidates(buffer) {
+  const candidates = [];
+  const seen = new Set();
+  let start = null;
+
+  for (let index = 0; index <= buffer.length; index += 1) {
+    const byte = buffer[index];
+    const isTextByte = byte >= 32 && byte <= 126;
+
+    if (isTextByte && start == null) {
+      start = index;
+      continue;
+    }
+
+    if ((start != null && !isTextByte) || (start != null && index === buffer.length)) {
+      const end = index;
+      const raw = buffer.subarray(start, end).toString('latin1').trim();
+      start = null;
+
+      if (!isLikelyStyleName(raw) || seen.has(raw.toLowerCase())) continue;
+      seen.add(raw.toLowerCase());
+      candidates.push({
+        slot: candidates.length + 1,
+        name: raw,
+        offset: end - raw.length,
+        length: raw.length
+      });
+
+      if (candidates.length >= MAX_STYLE_ENTRY_CANDIDATES) break;
+    }
+  }
+
+  return candidates;
+}
+
+function isLikelyStyleName(value) {
+  if (!value || value.length < 4 || value.length > 32) return false;
+  if (value === 'KORF') return false;
+  const letters = value.match(/[A-Za-z]/g)?.length || 0;
+  if (letters < 2) return false;
+  const noisy = value.match(/[^\w .,'+&/()-]/g)?.length || 0;
+  return noisy <= 1;
+}
+
+function summarizeStyleFamilies(banks) {
+  return banks.reduce((families, bank) => {
+    const family = bank.bankFamily || 'UNKNOWN';
+    families[family] ||= { bankCount: 0, slotCandidateCount: 0 };
+    families[family].bankCount += 1;
+    families[family].slotCandidateCount += bank.slotCount || 0;
+    return families;
+  }, {});
+}
+
 function inspectBuffer(buffer, totalBytes) {
   const zeroBytes = countBytes(buffer, 0);
   const asciiBytes = buffer.filter((byte) => byte >= 32 && byte <= 126).length;
@@ -348,6 +434,65 @@ function summarizeOtherFolders(grouped) {
       fileCount: files.length,
       totalBytes: files.reduce((sum, file) => sum + file.size, 0)
     }));
+}
+
+async function listSetFolders(targetPath, diagnostics) {
+  try {
+    const entries = await fs.readdir(targetPath, { withFileTypes: true });
+    return entries.filter((entry) => entry.isDirectory()).map((entry) => entry.name.toUpperCase()).sort();
+  } catch (error) {
+    diagnostics.push(diagnostic('warn', 'set-folder-scan-failed', targetPath, error.message));
+    return [];
+  }
+}
+
+function summarizeSetLayout(folders, grouped) {
+  return folders.map((folder) => {
+    const key = KORG_FOLDERS[folder] || folder.toLowerCase();
+    const files = grouped[key] || [];
+    return {
+      folder,
+      key,
+      fileCount: files.length,
+      totalBytes: files.reduce((sum, file) => sum + file.size, 0)
+    };
+  });
+}
+
+function buildSetDependencyGraph(grouped, folders) {
+  const nodes = folders.map((folder) => {
+    const key = KORG_FOLDERS[folder] || folder.toLowerCase();
+    const files = grouped[key] || [];
+    return {
+      id: key,
+      label: folder,
+      type: 'folder',
+      fileCount: files.length,
+      totalBytes: files.reduce((sum, file) => sum + file.size, 0)
+    };
+  });
+
+  const has = (key) => nodes.some((node) => node.id === key);
+  const edges = [
+    has('style') && has('sound') ? dependencyEdge('style', 'sound', 'STYLE banks may reference SOUND programs') : null,
+    has('style') && has('pcm') ? dependencyEdge('style', 'pcm', 'STYLE banks may indirectly depend on PCM samples') : null,
+    has('pad') && has('sound') ? dependencyEdge('pad', 'sound', 'PAD entries may reference SOUND programs') : null,
+    has('sound') && has('pcm') ? dependencyEdge('sound', 'pcm', 'SOUND programs may reference PCM samples') : null,
+    has('songbook') && has('style') ? dependencyEdge('songbook', 'style', 'SongBook entries may reference STYLE banks') : null,
+    has('performance') && has('style') ? dependencyEdge('performance', 'style', 'Performances may reference STYLE banks') : null,
+    has('global') && has('style') ? dependencyEdge('global', 'style', 'GLOBAL settings may affect STYLE playback') : null
+  ].filter(Boolean);
+
+  return {
+    parser: 'korg-set-dependency-safe-graph',
+    nodes,
+    edges,
+    note: 'Graph edges are folder-level dependency candidates inferred from Korg SET layout only; no proprietary references are decoded.'
+  };
+}
+
+function dependencyEdge(from, to, reason) {
+  return { from, to, confidence: 'layout-inferred', reason };
 }
 
 function extractStrings(buffer) {
