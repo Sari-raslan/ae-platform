@@ -1,24 +1,48 @@
 ﻿===== PHASE 3 PAD PARSER =====
 
-Implementation:
-- Added ESM-safe backend/src/korg/padParser.js metadata scanner.
-- Converted backend/src/korg/korgRoutes.js and styleParser.js to ESM-compatible route wrappers.
-- Mounted /api/korg in backend/src/server.js.
-- PAD scans are directory-aware and metadata-only; no proprietary payload decoding.
+> keyboard-manager-backend@0.1.0 smoke
+> node src/scripts/smoke.js
 
-Backend smoke:
-- npm.cmd run smoke passed.
-- sar.SET summary: 15 STYLE, 0 PAD, 5 SOUND, 99 PCM, 8 SongBook, 0 unknown.
-- Existing parser pipeline reports PAD folderPresent=true and files=0.
-
-API checks:
-- /api/korg/style-scan ok=True parser=STYLE_BANK_FOUNDATION fileCount=15 styleStringCount=7
-- /api/korg/pad-scan ok=True parser=korg-pad-safe-scanner folderPresent=True fileCount=0 padStringCount=0
-- PAD note: PAD folder is present but contains no PAD bank files.
-
-Frontend build:
-- npm.cmd run build passed.
-
-Safety:
-- Preserved explorer, export, Web MIDI, and main parser pipeline.
-- Left existing unrelated phase3-style-parser-report.txt modification untouched.
+{
+  "ok": true,
+  "id": "Korg/sar.SET",
+  "brand": "Korg",
+  "fileCount": 147,
+  "size": 259606448,
+  "extensionTypes": 10,
+  "korg": {
+    "styleFiles": 15,
+    "padFiles": 0,
+    "soundFiles": 5,
+    "pcmFiles": 99,
+    "songBookFiles": 8,
+    "unknownFiles": 0
+  },
+  "style": {
+    "parser": "korg-style-bank-safe-scanner",
+    "banks": 15,
+    "slotCandidates": 480,
+    "families": {
+      "FAVORITE": {
+        "bankCount": 12,
+        "slotCandidateCount": 384
+      },
+      "USER": {
+        "bankCount": 3,
+        "slotCandidateCount": 96
+      }
+    }
+  },
+  "pad": {
+    "parser": "korg-pad-safe-scanner",
+    "folderPresent": true,
+    "files": 0
+  },
+  "dependencyGraph": {
+    "parser": "korg-set-dependency-safe-graph",
+    "nodes": 8,
+    "edges": 7
+  },
+  "parserLogs": 6,
+  "parserDiagnostics": 1
+}
