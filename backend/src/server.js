@@ -8,6 +8,8 @@ import { analyzePath, supportedExtensions } from './services/analyzer.js';
 import { ensureDir, listLibraryItems, removeLibraryItem, safeName } from './services/library.js';
 // import midiRoutes from './midi/midiRoutes.js'; // TODO: Migrate to ESM
 
+const arrangerRoutes = require("./arranger/arrangerRoutes");
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(__dirname, '..', '..');
 const samplesDir = path.join(rootDir, 'samples');
@@ -38,6 +40,8 @@ const ultimateRoutes = require("./ultimate/ultimateRoutes");
 const aiRoutes = require("./ai/aiRoutes");
 app.use(cors());
 app.use(express.json({ limit: '2mb' }));
+
+app.use("/api/arranger", arrangerRoutes);
 
 app.get('/api/status', (_req, res) => {
   res.json({
