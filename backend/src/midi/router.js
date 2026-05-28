@@ -1,4 +1,10 @@
-﻿const midi = require("midi");
+async function loadMidi() {
+  try {
+    return await import("midi");
+  } catch (error) {
+    return null;
+  }
+}
 
 class MidiRouter {
   constructor() {
@@ -6,7 +12,18 @@ class MidiRouter {
     this.output = null;
   }
 
-  connect(inputPort = 0, outputPort = 0) {
+  async connect(inputPort = 0, outputPort = 0) {
+    const midi = await loadMidi();
+    if (!midi) {
+      return {
+        ok: false,
+        nativeAvailable: false,
+        inputPort,
+        outputPort,
+        error: "Native backend MIDI module is not installed."
+      };
+    }
+
     this.input = new midi.Input();
     this.output = new midi.Output();
 
@@ -27,4 +44,4 @@ class MidiRouter {
   }
 }
 
-module.exports = new MidiRouter();
+export default new MidiRouter();

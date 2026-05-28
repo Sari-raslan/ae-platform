@@ -1,6 +1,23 @@
-﻿const midi = require("midi");
+async function loadMidi() {
+  try {
+    return await import("midi");
+  } catch (error) {
+    return null;
+  }
+}
 
-function listMidiDevices() {
+async function listMidiDevices() {
+  const midi = await loadMidi();
+  if (!midi) {
+    return {
+      ok: true,
+      nativeAvailable: false,
+      inputs: [],
+      outputs: [],
+      message: "Native backend MIDI module is not installed; Web MIDI frontend support remains available."
+    };
+  }
+
   const input = new midi.Input();
   const output = new midi.Output();
 
@@ -23,11 +40,10 @@ function listMidiDevices() {
 
   return {
     ok: true,
+    nativeAvailable: true,
     inputs,
     outputs
   };
 }
 
-module.exports = {
-  listMidiDevices
-};
+export { listMidiDevices };

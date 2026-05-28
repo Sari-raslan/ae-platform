@@ -1,12 +1,12 @@
-﻿const express = require("express");
+import express from "express";
+import { listMidiDevices } from "../midi/deviceManager.js";
+import midiRouter from "../midi/router.js";
+
 const router = express.Router();
 
-const { listMidiDevices } = require("../midi/deviceManager");
-const midiRouter = require("../midi/router");
-
-router.get("/devices", (req, res) => {
+router.get("/devices", async (req, res) => {
   try {
-    res.json(listMidiDevices());
+    res.json(await listMidiDevices());
   } catch (err) {
     res.status(500).json({
       ok: false,
@@ -15,13 +15,13 @@ router.get("/devices", (req, res) => {
   }
 });
 
-router.post("/connect", express.json(), (req, res) => {
+router.post("/connect", express.json(), async (req, res) => {
   try {
     const inputPort = Number(req.body.inputPort || 0);
     const outputPort = Number(req.body.outputPort || 0);
 
     res.json(
-      midiRouter.connect(inputPort, outputPort)
+      await midiRouter.connect(inputPort, outputPort)
     );
   } catch (err) {
     res.status(500).json({
@@ -31,4 +31,4 @@ router.post("/connect", express.json(), (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

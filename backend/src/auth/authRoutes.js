@@ -1,7 +1,7 @@
-const express = require("express");
-const router = express.Router();
+import express from "express";
+import { register, login, me } from "./authStore.js";
 
-const { register, login, me } = require("./authStore");
+const router = express.Router();
 
 router.post("/register", express.json(), (req, res) => {
   const { email, password } = req.body || {};
@@ -31,4 +31,4 @@ router.get("/cloud-sync", (req, res) => {
   });
 });
 
-module.exports = router;
+export default router;

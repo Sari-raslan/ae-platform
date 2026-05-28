@@ -1,7 +1,7 @@
-const express = require("express");
-const router = express.Router();
+import express from "express";
+import { getStyles } from "./styles.js";
 
-const { getStyles } = require("./styles");
+const router = express.Router();
 
 router.get("/styles",(req,res)=>{
   res.json(getStyles());
@@ -16,4 +16,4 @@ router.get("/status",(req,res)=>{
   });
 });
 
-module.exports = router;
+export default router;

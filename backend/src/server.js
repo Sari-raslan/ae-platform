@@ -6,10 +6,9 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { analyzePath, supportedExtensions } from './services/analyzer.js';
 import { ensureDir, listLibraryItems, removeLibraryItem, safeName } from './services/library.js';
-// import midiRoutes from './midi/midiRoutes.js'; // TODO: Migrate to ESM
-
-const arrangerRoutes = require("./arranger/arrangerRoutes");
-const authRoutes = require("./auth/authRoutes");
+import arrangerRoutes from './arranger/arrangerRoutes.js';
+import authRoutes from './auth/authRoutes.js';
+import midiRoutes from './midi/midiRoutes.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(__dirname, '..', '..');
@@ -35,15 +34,12 @@ const upload = multer({
 });
 
 const app = express();
-
-const ultimateRoutes = require("./ultimate/ultimateRoutes");
-
-const aiRoutes = require("./ai/aiRoutes");
 app.use(cors());
 app.use(express.json({ limit: '2mb' }));
 
 app.use("/api/auth", authRoutes);
 app.use("/api/arranger", arrangerRoutes);
+app.use("/api/midi", midiRoutes);
 
 app.get('/api/status', (_req, res) => {
   res.json({

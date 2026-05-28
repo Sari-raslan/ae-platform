@@ -27,6 +27,4 @@ function getStyles(){
   };
 }
 
-module.exports = {
-  getStyles
-};
+export { getStyles };

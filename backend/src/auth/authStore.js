@@ -1,7 +1,9 @@
-const fs = require("fs");
-const path = require("path");
-const crypto = require("crypto");
+import fs from "node:fs";
+import path from "node:path";
+import crypto from "node:crypto";
+import { fileURLToPath } from "node:url";
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const dbFile = path.join(__dirname, "../data/users.json");
 
 function ensureDb() {
@@ -84,8 +86,4 @@ function me(token) {
   }
 }
 
-module.exports = {
-  register,
-  login,
-  me
-};
+export { register, login, me };
