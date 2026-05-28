@@ -279,6 +279,8 @@ function App() {
 <AIDashboard />
 <ReleasePanel />
 <UltimateDashboard />
+<EmotionalHero />
+<MusicMoodPanel />
 </main>
   );
 }

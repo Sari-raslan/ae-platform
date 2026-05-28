@@ -1,4 +1,4 @@
-﻿export default function EmotionalHero() {
+export default function EmotionalHero() {
 
   return (
     <div className="emotion-hero">
@@ -6,11 +6,11 @@
       <div className="emotion-glow"></div>
 
       <div className="music-notes">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
+        <span>♫</span>
+        <span>♬</span>
+        <span>♪</span>
+        <span>♩</span>
+        <span>♫</span>
       </div>
 
       <div className="emotion-content">
@@ -28,11 +28,11 @@
           <div className="emotion-buttons">
 
             <button className="music-btn">
-               Open Library
+              ♫ Open Library
             </button>
 
             <button className="music-btn secondary">
-               Live MIDI
+              ♬ Live MIDI
             </button>
 
           </div>
@@ -59,7 +59,7 @@
                 key={i}
                 className="eq-bar"
                 style={{
-                  height: ${20 + ((i * 17) % 140)}px
+                  height: `${20 + ((i * 17) % 140)}px`
                 }}
               />
             ))}

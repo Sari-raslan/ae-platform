@@ -1,4 +1,4 @@
-﻿export default function MusicMoodPanel() {
+export default function MusicMoodPanel() {
 
   const moods = [
     "Epic",
@@ -16,7 +16,7 @@
         <div key={i} className="mood-card">
 
           <div className="mood-icon">
-            
+            ♫
           </div>
 
           <strong>{mood}</strong>
