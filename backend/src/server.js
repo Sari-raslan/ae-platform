@@ -8,6 +8,7 @@ import { analyzePath, supportedExtensions } from './services/analyzer.js';
 import { ensureDir, listLibraryItems, removeLibraryItem, safeName } from './services/library.js';
 import arrangerRoutes from './arranger/arrangerRoutes.js';
 import authRoutes from './auth/authRoutes.js';
+import korgRoutes from './korg/korgRoutes.js';
 import midiRoutes from './midi/midiRoutes.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -34,13 +35,12 @@ const upload = multer({
 });
 
 const app = express();
-
-const korgRoutes = require("./korg/korgRoutes");
 app.use(cors());
 app.use(express.json({ limit: '2mb' }));
 
 app.use("/api/auth", authRoutes);
 app.use("/api/arranger", arrangerRoutes);
+app.use("/api/korg", korgRoutes);
 app.use("/api/midi", midiRoutes);
 
 app.get('/api/status', (_req, res) => {

@@ -1,39 +1,34 @@
-﻿const express = require("express");
+import express from "express";
+import path from "node:path";
+import { parsePadBank } from "./padParser.js";
+import { parseStyleBank } from "./styleParser.js";
+
 const router = express.Router();
 
-const path = require("path");
-
-const {
-  parseStyleBank
-} = require("./styleParser");
+function defaultKorgSetPath() {
+  return path.join(process.cwd(), "..", "samples", "Korg", "sar.SET");
+}
 
 router.get("/style-scan", (req, res) => {
-
   try {
-
-    const target =
-      req.query.path ||
-      path.join(
-        process.cwd(),
-        "..",
-        "samples",
-        "Korg",
-        "sar.SET"
-      );
-
-    res.json(
-      parseStyleBank(target)
-    );
-
+    res.json(parseStyleBank(req.query.path || defaultKorgSetPath()));
   } catch (err) {
-
     res.status(500).json({
       ok: false,
       error: err.message
     });
-
   }
-
 });
 
-module.exports = router;
+router.get("/pad-scan", (req, res) => {
+  try {
+    res.json(parsePadBank(req.query.path || defaultKorgSetPath()));
+  } catch (err) {
+    res.status(500).json({
+      ok: false,
+      error: err.message
+    });
+  }
+});
+
+export default router;

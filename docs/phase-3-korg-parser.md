@@ -17,6 +17,7 @@ Date: 2026-05-28
 - PCM: indexes `.PCM` files by id/name/size and total/min/max bytes without reading sample payloads.
 - SongBook: scans `.SBD` and `.SBL` files for entry-name candidates, chunk candidates, and structure hints.
 - SET graph: records folder-level layout nodes and dependency candidates inferred from SET structure only.
+- Korg scan routes: `/api/korg/style-scan` and `/api/korg/pad-scan` provide ESM-safe metadata-only scan wrappers for local verification.
 - Unknown chunks: tolerated as candidates only; malformed or unreadable files become diagnostics instead of crashes.
 
 ## Safety Rules
@@ -27,6 +28,7 @@ Date: 2026-05-28
 - Chunk scanners treat tags and lengths as heuristic candidates, not authoritative decoded structures.
 - STYLE slot/name offsets are heuristic metadata candidates only, not decoded arranger events.
 - SET graph edges are layout-level candidates only; proprietary cross-references are not decoded.
+- PAD route scans are capped to metadata bytes and report empty PAD folders without fabricating entries.
 - Directory-level Korg analysis sees the full SET file list, so late folders like STYLE/SOUND/SongBook are not missed by the existing child-summary cap.
 
 ## Smoke Notes
@@ -34,6 +36,7 @@ Date: 2026-05-28
 - `samples/Korg/sar.SET` analysis completed and regenerated `docs/sar-set-analysis.json`.
 - Current sar.SET summary: 15 STYLE banks, candidate STYLE slots grouped into FAVORITE and USER bank families, PAD folder present with 0 PAD files, 5 SOUND banks, 99 PCM files, 8 SongBook files, and a folder-level dependency graph.
 - Frontend production build passed after parser changes.
+- PAD route verification passed: `/api/korg/pad-scan` reports the `sar.SET` PAD folder as present with 0 PAD files.
 
 ## Next Batches
 
