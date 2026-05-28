@@ -583,3 +583,201 @@ pre {
   font-size:24px;
   color:#ffffff;
 }
+
+body{
+  background:
+    radial-gradient(circle at top,#16213e 0%,#090b13 45%,#02040a 100%);
+  overflow-x:hidden;
+}
+
+.emotion-hero{
+  position:relative;
+  overflow:hidden;
+  padding:70px;
+  border-radius:40px;
+  margin-bottom:40px;
+  background:
+    linear-gradient(135deg,#111827 0%,#0b1020 100%);
+  border:1px solid #2e3d68;
+  box-shadow:
+    0 0 80px #6c63ff22,
+    inset 0 0 40px #8be9fd11;
+}
+
+.emotion-glow{
+  position:absolute;
+  inset:-100px;
+  background:
+    radial-gradient(circle,#7c4dff33 0%,transparent 60%);
+  animation:rotateGlow 18s linear infinite;
+}
+
+@keyframes rotateGlow{
+  from{
+    transform:rotate(0deg);
+  }
+  to{
+    transform:rotate(360deg);
+  }
+}
+
+.music-notes{
+  position:absolute;
+  top:20px;
+  right:30px;
+  display:flex;
+  gap:18px;
+  font-size:38px;
+  color:#8be9fd;
+  animation:floatNotes 5s infinite ease-in-out;
+}
+
+@keyframes floatNotes{
+  0%{
+    transform:translateY(0px);
+  }
+  50%{
+    transform:translateY(-12px);
+  }
+  100%{
+    transform:translateY(0px);
+  }
+}
+
+.emotion-content{
+  position:relative;
+  z-index:2;
+  display:grid;
+  grid-template-columns:1.2fr 1fr;
+  gap:50px;
+  align-items:center;
+}
+
+.emotion-left h1{
+  font-size:72px;
+  line-height:1;
+  margin-bottom:20px;
+  color:#ffffff;
+}
+
+.emotion-left p{
+  font-size:22px;
+  color:#9db4ff;
+  margin-bottom:40px;
+}
+
+.emotion-buttons{
+  display:flex;
+  gap:20px;
+  flex-wrap:wrap;
+}
+
+.music-btn{
+  padding:18px 28px;
+  border:none;
+  border-radius:999px;
+  background:
+    linear-gradient(135deg,#7c4dff,#00d4ff);
+  color:#ffffff;
+  font-size:18px;
+  font-weight:700;
+  cursor:pointer;
+  transition:.25s;
+  box-shadow:0 0 30px #7c4dff55;
+}
+
+.music-btn:hover{
+  transform:translateY(-4px) scale(1.03);
+  box-shadow:0 0 50px #00d4ff88;
+}
+
+.music-btn.secondary{
+  background:
+    linear-gradient(135deg,#ff4da6,#ff8a00);
+}
+
+.piano-wrapper{
+  display:flex;
+  gap:4px;
+  margin-bottom:30px;
+  align-items:flex-end;
+}
+
+.white-key{
+  width:22px;
+  height:120px;
+  border-radius:6px;
+  background:#ffffff;
+  box-shadow:0 0 15px #ffffff33;
+}
+
+.black-key{
+  width:18px;
+  height:80px;
+  border-radius:6px;
+  background:#0a0a0a;
+  margin-top:40px;
+}
+
+.equalizer{
+  display:flex;
+  align-items:flex-end;
+  gap:5px;
+  height:180px;
+}
+
+.eq-bar{
+  width:10px;
+  border-radius:999px;
+  background:
+    linear-gradient(to top,#00d4ff,#7c4dff,#ff4da6);
+  animation:eqPulse 1.4s infinite ease-in-out;
+}
+
+@keyframes eqPulse{
+  0%{
+    opacity:.5;
+  }
+  50%{
+    opacity:1;
+  }
+  100%{
+    opacity:.5;
+  }
+}
+
+.mood-panel{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:22px;
+  margin-bottom:40px;
+}
+
+.mood-card{
+  padding:26px;
+  border-radius:28px;
+  background:
+    linear-gradient(145deg,#111827,#1a2440);
+  border:1px solid #324368;
+  text-align:center;
+  transition:.3s;
+  box-shadow:0 0 20px #00000055;
+}
+
+.mood-card:hover{
+  transform:translateY(-8px) scale(1.03);
+  box-shadow:
+    0 0 35px #7c4dff55,
+    0 0 60px #00d4ff22;
+}
+
+.mood-icon{
+  font-size:44px;
+  margin-bottom:14px;
+  color:#8be9fd;
+}
+
+.mood-card strong{
+  color:#ffffff;
+  font-size:20px;
+}

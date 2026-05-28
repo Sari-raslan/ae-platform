@@ -1,4 +1,6 @@
-﻿import UltimateDashboard from "./components/ultimate/UltimateDashboard";
+﻿import EmotionalHero from "./components/emotion/EmotionalHero";
+import MusicMoodPanel from "./components/emotion/MusicMoodPanel";
+import UltimateDashboard from "./components/ultimate/UltimateDashboard";
 import AIDashboard from "./components/ai/AIDashboard";
 import MidiDashboard from "./components/MidiDashboard";
 import ReleasePanel from "./components/release/ReleasePanel";
@@ -433,6 +435,7 @@ function formatBytes(bytes = 0) {
 }
 
 createRoot(document.getElementById('root')).render(<App />);
+
 
 
 
