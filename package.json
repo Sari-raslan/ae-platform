@@ -1,0 +1,16 @@
+{
+  "name": "keyboard-manager",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "install:all": "npm --prefix backend install && npm --prefix frontend install",
+    "start": "cd backend && set PORT=43117&& npm start",
+    "smoke": "npm --prefix backend run smoke",
+    "build": "npm --prefix frontend run build"
+  }
+}
