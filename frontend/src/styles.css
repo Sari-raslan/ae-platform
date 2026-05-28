@@ -880,3 +880,49 @@ body{
   box-shadow:
     0 0 30px #7c4dff88;
 }
+
+.auth-panel{
+  margin-top:50px;
+  padding:36px;
+  border-radius:32px;
+  background:linear-gradient(145deg,#10172a,#16213e);
+  border:1px solid #33466e;
+}
+
+.auth-panel h2{
+  color:#fff;
+  margin-bottom:24px;
+}
+
+.auth-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:14px;
+}
+
+.auth-grid input{
+  padding:16px;
+  border-radius:14px;
+  border:1px solid #3c4f7c;
+  background:#0c1324;
+  color:#fff;
+}
+
+.auth-grid button{
+  padding:16px;
+  border:none;
+  border-radius:14px;
+  background:linear-gradient(135deg,#7c4dff,#00d4ff);
+  color:#fff;
+  font-weight:800;
+  cursor:pointer;
+}
+
+.auth-result{
+  margin-top:22px;
+  padding:18px;
+  border-radius:18px;
+  background:#070b14;
+  color:#8be9fd;
+  overflow:auto;
+}

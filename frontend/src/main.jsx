@@ -2,6 +2,7 @@
 import MusicMoodPanel from "./components/emotion/MusicMoodPanel";
 import UltimateDashboard from "./components/ultimate/UltimateDashboard";
 import ArrangerDashboard from "./components/arranger/ArrangerDashboard";
+import AuthPanel from "./components/auth/AuthPanel";
 import AIDashboard from "./components/ai/AIDashboard";
 import MidiDashboard from "./components/MidiDashboard";
 import ReleasePanel from "./components/release/ReleasePanel";
@@ -283,6 +284,7 @@ function App() {
 <EmotionalHero />
 <MusicMoodPanel />
 <ArrangerDashboard />
+<AuthPanel />
 </main>
   );
 }
