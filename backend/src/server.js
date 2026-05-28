@@ -6,6 +6,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { analyzePath, supportedExtensions } from './services/analyzer.js';
 import { ensureDir, listLibraryItems, removeLibraryItem, safeName } from './services/library.js';
+// import midiRoutes from './midi/midiRoutes.js'; // TODO: Migrate to ESM
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(__dirname, '..', '..');
@@ -32,7 +33,7 @@ const upload = multer({
 
 const app = express();
 
-const midiRoutes = require("./midi/midiRoutes");
+const aiRoutes = require("./ai/aiRoutes");
 app.use(cors());
 app.use(express.json({ limit: '2mb' }));
 

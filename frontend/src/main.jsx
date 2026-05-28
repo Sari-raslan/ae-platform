@@ -1,4 +1,5 @@
-﻿import MidiDashboard from "./components/MidiDashboard";
+﻿import AIDashboard from "./components/ai/AIDashboard";
+import MidiDashboard from "./components/MidiDashboard";
 import React, { useEffect, useMemo, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Activity, ChevronDown, ChevronRight, Clipboard, Copy, Download, FileAudio, FolderOpen, HardDriveUpload, Keyboard, RefreshCw, Search, Trash2, Usb } from 'lucide-react';
@@ -271,6 +272,7 @@ function App() {
 
       <MidiMonitor />
     <MidiDashboard />
+<AIDashboard />
 </main>
   );
 }
@@ -427,4 +429,5 @@ function formatBytes(bytes = 0) {
 }
 
 createRoot(document.getElementById('root')).render(<App />);
+
 

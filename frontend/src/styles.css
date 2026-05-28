@@ -478,3 +478,36 @@ pre {
   color:#dbe7ff;
   border:1px solid #2b3658;
 }
+
+.ai-dashboard{
+  margin-top:40px;
+  padding:30px;
+  border-radius:28px;
+  background:#0c1325;
+  border:1px solid #2c395d;
+}
+
+.ai-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+  margin-top:20px;
+}
+
+.ai-card{
+  padding:20px;
+  border-radius:20px;
+  background:#121b31;
+  border:1px solid #33456e;
+}
+
+.ai-card span{
+  display:block;
+  margin-bottom:10px;
+  color:#9fb5ff;
+}
+
+.ai-card strong{
+  color:#ffffff;
+  font-size:20px;
+}
