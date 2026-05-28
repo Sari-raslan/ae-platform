@@ -43,6 +43,27 @@ app.use("/api/arranger", arrangerRoutes);
 app.use("/api/korg", korgRoutes);
 app.use("/api/midi", midiRoutes);
 
+
+app.get("/api/korg/integrity", async (req, res) => {
+  try {
+    res.json({
+      ok: true,
+      status: "ready",
+      message: "Korg integrity dashboard endpoint ready",
+      data: {
+        parserDashboardSummary: null,
+        setIntegritySummary: null,
+        repairSuggestions: null,
+      },
+    });
+  } catch (error) {
+    res.status(500).json({
+      ok: false,
+      error: error.message,
+    });
+  }
+});
+
 app.get('/api/status', (_req, res) => {
   res.json({
     ok: true,
@@ -167,6 +188,7 @@ const port = Number(process.env.PORT || 4000);
 app.listen(port, () => {
   console.log(`Keyboard Manager backend listening on http://localhost:${port}`);
 });
+
 
 
 
