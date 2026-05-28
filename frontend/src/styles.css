@@ -511,3 +511,37 @@ pre {
   color:#ffffff;
   font-size:20px;
 }
+
+.release-panel{
+  margin-top:40px;
+  padding:30px;
+  border-radius:28px;
+  background:#0f1728;
+  border:1px solid #2f4269;
+}
+
+.release-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:18px;
+  margin-top:20px;
+}
+
+.release-card{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  padding:18px;
+  border-radius:18px;
+  background:#16223c;
+  border:1px solid #3a4d79;
+}
+
+.release-card span{
+  font-size:20px;
+  color:#63ffb0;
+}
+
+.release-card strong{
+  color:#ffffff;
+}
