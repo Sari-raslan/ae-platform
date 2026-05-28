@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { selectExplorerState } from './explorerState.js';
+import { createExplorerState, selectExplorerState } from './explorerState.js';
 
 const library = [
   { id: 'Korg/sar.SET', name: 'sar.SET', isDirectory: true, size: 4096, updatedAt: '2026-05-27T08:00:00.000Z' },
@@ -14,6 +14,29 @@ const selectedAnalysis = {
   strings: ['Dabke Live Set'],
   metadata: { zeroByteRatio: 0.12 }
 };
+
+{
+  const sharedLibrary = [
+    { id: '1', name: 'A.STY', category: 'STYLE', size: 100 },
+    { id: '2', name: 'B.PAD', category: 'PAD', size: 200 },
+    { id: '3', name: 'C.PCG', category: 'SOUND', size: 300 }
+  ];
+
+  const state = createExplorerState({ library: sharedLibrary, selectedId: '2' });
+  assert.equal(state.visibleRows.length, 3);
+  assert.equal(state.counts.total, 3);
+  assert.equal(state.counts.size, 600);
+  assert.equal(state.counts.categories.STYLE, 1);
+  assert.equal(state.selectedRow.name, 'B.PAD');
+
+  const filtered = createExplorerState({ library: sharedLibrary, query: 'pad' });
+  assert.equal(filtered.visibleRows.length, 1);
+  assert.equal(filtered.visibleRows[0].name, 'B.PAD');
+
+  const categorized = createExplorerState({ library: sharedLibrary, category: 'STYLE' });
+  assert.equal(categorized.visibleRows.length, 1);
+  assert.equal(categorized.visibleRows[0].category, 'STYLE');
+}
 
 {
   const state = selectExplorerState(library, { selectedId: 'Korg/sar.SET', selectedAnalysis });

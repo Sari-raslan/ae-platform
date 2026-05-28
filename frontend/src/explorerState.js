@@ -1,5 +1,83 @@
 const ARRANGER_EXTENSIONS = ['.sty', '.set', '.pcg', '.kst', '.pad', '.prs', '.all', '.bkp', '.pkg'];
 
+export function createExplorerState({
+  library = [],
+  selectedId = null,
+  query = '',
+  category = 'ALL',
+  sortKey = 'name',
+  sortDirection = 'asc'
+} = {}) {
+  const rows = Array.isArray(library) ? library : [];
+
+  const scopedRows = rows;
+
+  const normalizedQuery = String(query || '').trim().toLowerCase();
+
+  const searchedRows = normalizedQuery
+    ? scopedRows.filter((row) => {
+        const searchable = [
+          row.id,
+          row.name,
+          row.fileName,
+          row.path,
+          row.relativePath,
+          row.extension,
+          row.ext,
+          row.category,
+          row.detectedType,
+          row.type
+        ]
+          .filter(Boolean)
+          .join(' ')
+          .toLowerCase();
+
+        return searchable.includes(normalizedQuery);
+      })
+    : scopedRows;
+
+  const categorizedRows =
+    category && category !== 'ALL'
+      ? searchedRows.filter((row) => String(row.category || row.detectedType || 'UNKNOWN') === category)
+      : searchedRows;
+
+  const sortedRows = [...categorizedRows].sort((a, b) => {
+    const av = a?.[sortKey] ?? '';
+    const bv = b?.[sortKey] ?? '';
+
+    if (typeof av === 'number' && typeof bv === 'number') {
+      return sortDirection === 'asc' ? av - bv : bv - av;
+    }
+
+    return sortDirection === 'asc'
+      ? String(av).localeCompare(String(bv))
+      : String(bv).localeCompare(String(av));
+  });
+
+  const counts = sortedRows.reduce(
+    (acc, row) => {
+      const key = row.category || row.detectedType || 'UNKNOWN';
+      acc.total += 1;
+      acc.categories[key] = (acc.categories[key] || 0) + 1;
+      acc.size += Number(row.size || 0);
+      return acc;
+    },
+    { total: 0, size: 0, categories: {} }
+  );
+
+  const selectedRow = selectedId
+    ? rows.find((row) => String(row.id) === String(selectedId) || String(row.path) === String(selectedId))
+    : null;
+
+  return {
+    rawRows: rows,
+    scopedRows,
+    visibleRows: sortedRows,
+    counts,
+    selectedRow
+  };
+}
+
 export function selectExplorerState(library, options = {}) {
   const {
     selectedId = null,

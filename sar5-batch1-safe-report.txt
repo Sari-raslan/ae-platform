@@ -1,0 +1,11 @@
+﻿===== SAR-5 BATCH 1 SAFE FOUNDATION 05/28/2026 03:49:12 =====
+
+frontend npm install: up to date, 0 vulnerabilities
+frontend test:explorer: passed
+frontend build: passed (vite v8.0.14, 1573 modules transformed)
+backend npm install: up to date, 0 vulnerabilities
+backend smoke: passed
+backend smoke summary: ok=true id=Korg/sar.SET brand=Korg fileCount=147 size=259606448 extensionTypes=10 styleFiles=15 padFiles=0 soundFiles=5 pcmFiles=99 songBookFiles=8 unknownFiles=0 parserLogs=6 parserDiagnostics=1
+backend start: failed before listening on port 4000
+backend start error: ERR_AMBIGUOUS_MODULE_SYNTAX in backend/src/server.js line 11, mixed require() and top-level await
+frontend dev running: http://localhost:5190 (200 OK, title Keyboard Manager)
