@@ -34,6 +34,8 @@ const upload = multer({
 });
 
 const app = express();
+
+const korgRoutes = require("./korg/korgRoutes");
 app.use(cors());
 app.use(express.json({ limit: '2mb' }));
 
@@ -165,5 +167,6 @@ const port = Number(process.env.PORT || 4000);
 app.listen(port, () => {
   console.log(`Keyboard Manager backend listening on http://localhost:${port}`);
 });
+
 
 
