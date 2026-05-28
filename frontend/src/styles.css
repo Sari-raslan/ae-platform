@@ -926,3 +926,66 @@ body{
   color:#8be9fd;
   overflow:auto;
 }
+
+.hagel-panel{
+  margin-top:50px;
+  padding:38px;
+  border-radius:34px;
+  background:linear-gradient(145deg,#101827,#1d2740);
+  border:1px solid #3b4f7c;
+  box-shadow:0 0 60px #00d4ff22;
+}
+
+.hagel-panel h2{
+  color:#ffffff;
+  font-size:38px;
+  margin-bottom:12px;
+}
+
+.hagel-panel p{
+  color:#b9c7ee;
+  font-size:17px;
+  max-width:900px;
+  line-height:1.6;
+}
+
+.hagel-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px;
+  margin-top:26px;
+}
+
+.hagel-upload,
+.hagel-actions button,
+.hagel-actions select{
+  padding:15px 18px;
+  border-radius:15px;
+  border:1px solid #415684;
+  background:#0b1222;
+  color:#ffffff;
+  font-weight:800;
+}
+
+.hagel-upload{
+  cursor:pointer;
+}
+
+.hagel-upload input{
+  display:none;
+}
+
+.hagel-actions button{
+  background:linear-gradient(135deg,#00d4ff,#7c4dff);
+  border:none;
+  cursor:pointer;
+}
+
+.hagel-result{
+  margin-top:24px;
+  padding:20px;
+  border-radius:20px;
+  background:#070b14;
+  color:#8be9fd;
+  overflow:auto;
+}

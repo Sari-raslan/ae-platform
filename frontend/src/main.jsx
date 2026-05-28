@@ -1,4 +1,5 @@
-﻿import EmotionalHero from "./components/emotion/EmotionalHero";
+﻿import HagelAudioManager from "./components/hagel/HagelAudioManager";
+import EmotionalHero from "./components/emotion/EmotionalHero";
 import MusicMoodPanel from "./components/emotion/MusicMoodPanel";
 import UltimateDashboard from "./components/ultimate/UltimateDashboard";
 import ArrangerDashboard from "./components/arranger/ArrangerDashboard";
@@ -285,6 +286,7 @@ function App() {
 <MusicMoodPanel />
 <ArrangerDashboard />
 <AuthPanel />
+<HagelAudioManager />
 </main>
   );
 }
@@ -441,6 +443,7 @@ function formatBytes(bytes = 0) {
 }
 
 createRoot(document.getElementById('root')).render(<App />);
+
 
 
 
