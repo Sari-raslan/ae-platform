@@ -1,19 +1,7 @@
-﻿import fs from 'node:fs/promises';
-import { summarizeSetIntegrity } from '../../parsers/korg/setIntegritySummary.js';
-import { buildParserDashboardSummary } from '../../parsers/korg/parserDashboardSummary.js';
-import { summarizeSetIntegrity } from '../../parsers/korg/setIntegritySummary.js';
+import fs from 'node:fs/promises';
 import path from 'node:path';
-import { summarizeSetIntegrity } from '../../parsers/korg/setIntegritySummary.js';
-import { buildParserDashboardSummary } from '../../parsers/korg/parserDashboardSummary.js';
-import { summarizeSetIntegrity } from '../../parsers/korg/setIntegritySummary.js';
 import { analyzeKorgFile, analyzeKorgSetDirectory, isKorgSetPath } from '../parsers/korg.js';
-import { summarizeSetIntegrity } from '../../parsers/korg/setIntegritySummary.js';
-import { buildParserDashboardSummary } from '../../parsers/korg/parserDashboardSummary.js';
-import { summarizeSetIntegrity } from '../../parsers/korg/setIntegritySummary.js';
 import { analyzeStyleSlotDiagnostics } from '../../parsers/korg/styleSlotDiagnostics.js';
-import { summarizeSetIntegrity } from '../../parsers/korg/setIntegritySummary.js';
-import { buildParserDashboardSummary } from '../../parsers/korg/parserDashboardSummary.js';
-import { summarizeSetIntegrity } from '../../parsers/korg/setIntegritySummary.js';
 
 export const supportedExtensions = ['.mid', '.midi', '.syx', '.sty', '.set', '.pcg', '.kst', '.pad', '.prs', '.all', '.bkp', '.pkg'];
 const arrangerExtensions = new Set(['.sty', '.set', '.pcg', '.kst', '.pad', '.prs', '.all', '.bkp', '.pkg']);
@@ -85,35 +73,6 @@ async function analyzeDirectory(targetPath, rootDir) {
 
     result.diagnostics.push(...styleSlotDiagnostics.diagnostics);
   }
-
-  
-  const setIntegritySummary = summarizeSetIntegrity({
-    styleBankCatalog: korg?.styleBankCatalog || {},
-    styleSlotDiagnostics: result.styleSlotDiagnostics || {},
-    songBookStyleLinks: result.songBookStyleLinks || {},
-    pcmDependencyDiagnostics: result.pcmDependencyDiagnostics || {},
-    repairSuggestions: result.repairSuggestions || {},
-  });
-
-  result.setIntegritySummary = setIntegritySummary;
-
-  const parserDashboardSummary = buildParserDashboardSummary({
-    styleBankCatalog: korg?.styleBankCatalog || {},
-    styleSlotDiagnostics: result.styleSlotDiagnostics || {},
-    songBookStyleLinks: result.songBookStyleLinks || {},
-    pcmDependencyDiagnostics: result.pcmDependencyDiagnostics || {},
-    repairSuggestions: result.repairSuggestions || {},
-    setIntegritySummary,
-  });
-
-  result.parserDashboardSummary = parserDashboardSummary;
-
-  result.diagnostics.push({
-    type: "parser-dashboard-summary",
-    level: "info",
-    message: `Parser dashboard summary ready: ${parserDashboardSummary.status}`,
-    data: parserDashboardSummary,
-  });
 
   return result;
 }
@@ -318,5 +277,3 @@ function detectBrand(text) {
 function unique(values) {
   return [...new Set(values)];
 }
-
-
