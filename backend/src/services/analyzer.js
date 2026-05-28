@@ -1,6 +1,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { analyzeKorgFile, analyzeKorgSetDirectory, isKorgSetPath } from '../parsers/korg.js';
+import { analyzeStyleSlotDiagnostics } from '../../parsers/korg/styleSlotDiagnostics.js';
 
 export const supportedExtensions = ['.mid', '.midi', '.syx', '.sty', '.set', '.pcg', '.kst', '.pad', '.prs', '.all', '.bkp', '.pkg'];
 const arrangerExtensions = new Set(['.sty', '.set', '.pcg', '.kst', '.pad', '.prs', '.all', '.bkp', '.pkg']);
@@ -36,7 +37,9 @@ async function analyzeDirectory(targetPath, rootDir) {
   }
   const strings = unique(summaries.flatMap((item) => item.strings || [])).slice(0, 80);
   const korg = isKorgSetPath(targetPath) ? await analyzeKorgSetDirectory(targetPath, rootDir, files) : null;
-  return baseResult(targetPath, rootDir, {
+  
+  // Initialize result
+  const result = baseResult(targetPath, rootDir, {
     kind: 'directory',
     extension: path.extname(targetPath).toLowerCase(),
     size: totalSize,
@@ -48,12 +51,30 @@ async function analyzeDirectory(targetPath, rootDir) {
     extensionCounts: extCounts,
     strings,
     children: summaries,
+    diagnostics: [],
     ...(korg ? {
       korg,
       parserDiagnostics: korg.diagnostics,
       parserLogs: korg.logs
     } : {})
   });
+
+  // Add style slot diagnostics if Korg SET with catalog
+  if (korg && korg.styleBankCatalog) {
+    const styleSlotDiagnostics = analyzeStyleSlotDiagnostics(korg.styleBankCatalog, {
+      maxSlot: 40,
+    });
+
+    result.styleSlotDiagnostics = {
+      conflictCount: styleSlotDiagnostics.conflicts.length,
+      conflicts: styleSlotDiagnostics.conflicts,
+      missingSlotsByBank: styleSlotDiagnostics.missingSlotsByBank,
+    };
+
+    result.diagnostics.push(...styleSlotDiagnostics.diagnostics);
+  }
+
+  return result;
 }
 
 async function analyzeFile(filePath, rootDir, options = {}) {
