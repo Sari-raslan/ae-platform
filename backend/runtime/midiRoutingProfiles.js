@@ -1,0 +1,1 @@
+﻿export function buildMidiRoutingProfiles(){ return { status: 'ready', profiles: [{ id: 'default-arranger', name: 'Default Arranger Routing', midiInput: 'default-input', midiOutput: 'default-output', clock: 'internal' }], generatedAt: new Date().toISOString() }; }
