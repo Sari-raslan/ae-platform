@@ -1,0 +1,9 @@
+﻿export async function fetchRuntimeOverview() {
+  const response = await fetch("/api/runtime/overview");
+
+  if (!response.ok) {
+    throw new Error(`Runtime overview failed: ${response.status}`);
+  }
+
+  return response.json();
+}
