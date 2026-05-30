@@ -1,4 +1,4 @@
-import WebAudioRuntimePanel from "./components/WebAudioRuntimePanel.jsx";\nimport MidiRuntimeCommandSimulator from "./components/MidiRuntimeCommandSimulator.jsx";
+import LiveArrangerAudioStreamPanel from "./components/LiveArrangerAudioStreamPanel.jsx";\nimport WebAudioRuntimePanel from "./components/WebAudioRuntimePanel.jsx";\nimport MidiRuntimeCommandSimulator from "./components/MidiRuntimeCommandSimulator.jsx";
 import RuntimeControlCenter from "./components/RuntimeControlCenter.jsx";
 import RuntimeMasterPanel from "./components/RuntimeMasterPanel.jsx";
 import RealtimeTransportControls from "./components/RealtimeTransportControls.jsx";
@@ -475,4 +475,16 @@ if (!document.getElementById(webAudioRuntimeRootId)) {
   document.body.appendChild(webAudioRuntimeRoot);
 
   createRoot(webAudioRuntimeRoot).render(<WebAudioRuntimePanel />);
+}
+
+
+const liveArrangerAudioStreamRootId = "live-arranger-audio-stream-root";
+
+if (!document.getElementById(liveArrangerAudioStreamRootId)) {
+  const liveArrangerAudioStreamRoot = document.createElement("div");
+  liveArrangerAudioStreamRoot.id = liveArrangerAudioStreamRootId;
+  liveArrangerAudioStreamRoot.style.margin = "24px";
+  document.body.appendChild(liveArrangerAudioStreamRoot);
+
+  createRoot(liveArrangerAudioStreamRoot).render(<LiveArrangerAudioStreamPanel />);
 }
