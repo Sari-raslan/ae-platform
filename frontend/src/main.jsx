@@ -1,3 +1,4 @@
+import RuntimeExecutionPanel from "./components/RuntimeExecutionPanel.jsx";
 import RuntimeMasterPanel from "./components/RuntimeMasterPanel.jsx";
 import RealtimeTransportControls from "./components/RealtimeTransportControls.jsx";
 import LiveRuntimePanel from "./components/LiveRuntimePanel.jsx";
@@ -457,3 +458,6 @@ createRoot(document.getElementById('root')).render(<App />);
 
 
 <RuntimeMasterPanel />
+
+
+<RuntimeExecutionPanel />
