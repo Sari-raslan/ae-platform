@@ -1,3 +1,4 @@
+import MidiRuntimeCommandSimulator from "./components/MidiRuntimeCommandSimulator.jsx";
 import RuntimeControlCenter from "./components/RuntimeControlCenter.jsx";
 import RuntimeMasterPanel from "./components/RuntimeMasterPanel.jsx";
 import RealtimeTransportControls from "./components/RealtimeTransportControls.jsx";
@@ -463,3 +464,6 @@ createRoot(document.getElementById('root')).render(<App />);
 
 
 <RuntimeControlCenter />
+
+
+<MidiRuntimeCommandSimulator />
