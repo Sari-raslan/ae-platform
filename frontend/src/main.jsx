@@ -1,4 +1,4 @@
-import AdvancedArrangerPerformancePanel from "./components/AdvancedArrangerPerformancePanel.jsx";\nimport RealtimeMusicalIntelligencePanel from "./components/RealtimeMusicalIntelligencePanel.jsx";\nimport RealtimeSequencedPlaybackPanel from "./components/RealtimeSequencedPlaybackPanel.jsx";
+import ProfessionalArrangerRuntimePanel from "./components/ProfessionalArrangerRuntimePanel.jsx";\nimport AdvancedArrangerPerformancePanel from "./components/AdvancedArrangerPerformancePanel.jsx";\nimport RealtimeMusicalIntelligencePanel from "./components/RealtimeMusicalIntelligencePanel.jsx";\nimport RealtimeSequencedPlaybackPanel from "./components/RealtimeSequencedPlaybackPanel.jsx";
 import LiveArrangerAudioStreamPanel from "./components/LiveArrangerAudioStreamPanel.jsx";
 import WebAudioRuntimePanel from "./components/WebAudioRuntimePanel.jsx";
 import MidiRuntimeCommandSimulator from "./components/MidiRuntimeCommandSimulator.jsx";
@@ -529,5 +529,19 @@ if (!document.getElementById(advancedArrangerPerformanceRootId)) {
 
   createRoot(advancedArrangerPerformanceRoot).render(
     <AdvancedArrangerPerformancePanel />
+  );
+}
+
+
+const professionalArrangerRuntimeRootId = "professional-arranger-runtime-root";
+
+if (!document.getElementById(professionalArrangerRuntimeRootId)) {
+  const professionalArrangerRuntimeRoot = document.createElement("div");
+  professionalArrangerRuntimeRoot.id = professionalArrangerRuntimeRootId;
+  professionalArrangerRuntimeRoot.style.margin = "24px";
+  document.body.appendChild(professionalArrangerRuntimeRoot);
+
+  createRoot(professionalArrangerRuntimeRoot).render(
+    <ProfessionalArrangerRuntimePanel />
   );
 }
