@@ -1,3 +1,4 @@
+import LiveRuntimePanel from "./components/LiveRuntimePanel.jsx";
 ﻿import HagelAudioManager from "./components/hagel/HagelAudioManager";
 import EmotionalHero from "./components/emotion/EmotionalHero";
 import MusicMoodPanel from "./components/emotion/MusicMoodPanel";
@@ -287,6 +288,8 @@ function App() {
 <ArrangerDashboard />
 <AuthPanel />
 <HagelAudioManager />
+
+<LiveRuntimePanel />
 </main>
   );
 }
