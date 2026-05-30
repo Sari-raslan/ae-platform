@@ -1,3 +1,4 @@
+import ApexKernelPanel from "./components/ApexKernelPanel.jsx";
 import OmegaKernelPanel from "./components/OmegaKernelPanel.jsx";
 import InfiniteKernelPanel from "./components/InfiniteKernelPanel.jsx";
 import RuntimeFinalReportPanel from "./components/RuntimeFinalReportPanel.jsx";
@@ -481,3 +482,6 @@ createRoot(document.getElementById('root')).render(<App />);
 
 
 <OmegaKernelPanel />
+
+
+<ApexKernelPanel />

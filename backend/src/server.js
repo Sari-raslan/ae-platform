@@ -1,3 +1,4 @@
+import { createApexKernel } from "./runtime/runtimeApexKernel.js";
 import { createOmegaKernel } from "./runtime/runtimeOmegaKernel.js";
 import { createInfiniteKernel } from "./runtime/runtimeInfiniteKernel.js";
 import { createRuntimeFinalReport } from "./runtime/runtimeFinalReport.js";
@@ -313,6 +314,22 @@ app.get("/api/runtime/infinite-kernel", async (req, res) => {
 app.get("/api/runtime/omega-kernel", async (req, res) => {
   try {
     const runtime = createOmegaKernel();
+
+    res.json(runtime);
+  } catch (error) {
+    res.status(500).json({
+      ok: false,
+      error: error.message,
+    });
+  }
+});
+
+
+
+
+app.get("/api/runtime/apex-kernel", async (req, res) => {
+  try {
+    const runtime = createApexKernel();
 
     res.json(runtime);
   } catch (error) {
