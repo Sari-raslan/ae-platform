@@ -1,4 +1,4 @@
-import LiveArrangerAudioStreamPanel from "./components/LiveArrangerAudioStreamPanel.jsx";\nimport WebAudioRuntimePanel from "./components/WebAudioRuntimePanel.jsx";\nimport MidiRuntimeCommandSimulator from "./components/MidiRuntimeCommandSimulator.jsx";
+import RealtimeSequencedPlaybackPanel from "./components/RealtimeSequencedPlaybackPanel.jsx";\nimport LiveArrangerAudioStreamPanel from "./components/LiveArrangerAudioStreamPanel.jsx";\nimport WebAudioRuntimePanel from "./components/WebAudioRuntimePanel.jsx";\nimport MidiRuntimeCommandSimulator from "./components/MidiRuntimeCommandSimulator.jsx";
 import RuntimeControlCenter from "./components/RuntimeControlCenter.jsx";
 import RuntimeMasterPanel from "./components/RuntimeMasterPanel.jsx";
 import RealtimeTransportControls from "./components/RealtimeTransportControls.jsx";
@@ -487,4 +487,16 @@ if (!document.getElementById(liveArrangerAudioStreamRootId)) {
   document.body.appendChild(liveArrangerAudioStreamRoot);
 
   createRoot(liveArrangerAudioStreamRoot).render(<LiveArrangerAudioStreamPanel />);
+}
+
+
+const realtimeSequencedPlaybackRootId = "realtime-sequenced-playback-root";
+
+if (!document.getElementById(realtimeSequencedPlaybackRootId)) {
+  const realtimeSequencedPlaybackRoot = document.createElement("div");
+  realtimeSequencedPlaybackRoot.id = realtimeSequencedPlaybackRootId;
+  realtimeSequencedPlaybackRoot.style.margin = "24px";
+  document.body.appendChild(realtimeSequencedPlaybackRoot);
+
+  createRoot(realtimeSequencedPlaybackRoot).render(<RealtimeSequencedPlaybackPanel />);
 }
