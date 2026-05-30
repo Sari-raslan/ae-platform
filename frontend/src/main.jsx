@@ -351,8 +351,7 @@ function AnalysisViewer({ analysis, busy }) {
       {analysis.metadata && <KeyValue title="Binary metadata" data={analysis.metadata} />}
       {analysis.extensionCounts && <KeyValue title="Extensions" data={analysis.extensionCounts} />}
       {analysis.hexPreview && <CodeBlock title="Hex preview" value={analysis.hexPreview} />}
-      {!!analysis.strings?.length && <CodeBlock title="Extracted strings" value={analysis.strings.join('
-')} />}
+      {!!analysis.strings?.length && <CodeBlock title="Extracted strings" value={analysis.strings.join('\n')} />}
       {!!analysis.children?.length && (
         <div>
           <h4>Contained files</h4>
