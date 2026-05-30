@@ -1,4 +1,4 @@
-import ProfessionalWorkstationPanel from "./components/ProfessionalWorkstationPanel.jsx";\nimport WorkstationControlCenter from "./components/WorkstationControlCenter.jsx";\nimport ProfessionalArrangerRuntimePanel from "./components/ProfessionalArrangerRuntimePanel.jsx";\nimport AdvancedArrangerPerformancePanel from "./components/AdvancedArrangerPerformancePanel.jsx";\nimport RealtimeMusicalIntelligencePanel from "./components/RealtimeMusicalIntelligencePanel.jsx";\nimport RealtimeSequencedPlaybackPanel from "./components/RealtimeSequencedPlaybackPanel.jsx";
+import FinalArrangerKernelPanel from "./components/FinalArrangerKernelPanel.jsx";\nimport ProfessionalWorkstationPanel from "./components/ProfessionalWorkstationPanel.jsx";\nimport WorkstationControlCenter from "./components/WorkstationControlCenter.jsx";\nimport ProfessionalArrangerRuntimePanel from "./components/ProfessionalArrangerRuntimePanel.jsx";\nimport AdvancedArrangerPerformancePanel from "./components/AdvancedArrangerPerformancePanel.jsx";\nimport RealtimeMusicalIntelligencePanel from "./components/RealtimeMusicalIntelligencePanel.jsx";\nimport RealtimeSequencedPlaybackPanel from "./components/RealtimeSequencedPlaybackPanel.jsx";
 import LiveArrangerAudioStreamPanel from "./components/LiveArrangerAudioStreamPanel.jsx";
 import WebAudioRuntimePanel from "./components/WebAudioRuntimePanel.jsx";
 import MidiRuntimeCommandSimulator from "./components/MidiRuntimeCommandSimulator.jsx";
@@ -576,5 +576,27 @@ if (!document.getElementById(professionalWorkstationPanelRootId)) {
 
   createRoot(professionalWorkstationPanelRoot).render(
     <ProfessionalWorkstationPanel />
+  );
+}
+
+
+const finalArrangerKernelRootId =
+  "final-arranger-kernel-root";
+
+if (!document.getElementById(finalArrangerKernelRootId)) {
+  const finalArrangerKernelRoot =
+    document.createElement("div");
+
+  finalArrangerKernelRoot.id =
+    finalArrangerKernelRootId;
+
+  finalArrangerKernelRoot.style.margin = "24px";
+
+  document.body.appendChild(
+    finalArrangerKernelRoot
+  );
+
+  createRoot(finalArrangerKernelRoot).render(
+    <FinalArrangerKernelPanel />
   );
 }
