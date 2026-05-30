@@ -1,4 +1,4 @@
-import WorkstationControlCenter from "./components/WorkstationControlCenter.jsx";\nimport ProfessionalArrangerRuntimePanel from "./components/ProfessionalArrangerRuntimePanel.jsx";\nimport AdvancedArrangerPerformancePanel from "./components/AdvancedArrangerPerformancePanel.jsx";\nimport RealtimeMusicalIntelligencePanel from "./components/RealtimeMusicalIntelligencePanel.jsx";\nimport RealtimeSequencedPlaybackPanel from "./components/RealtimeSequencedPlaybackPanel.jsx";
+import ProfessionalWorkstationPanel from "./components/ProfessionalWorkstationPanel.jsx";\nimport WorkstationControlCenter from "./components/WorkstationControlCenter.jsx";\nimport ProfessionalArrangerRuntimePanel from "./components/ProfessionalArrangerRuntimePanel.jsx";\nimport AdvancedArrangerPerformancePanel from "./components/AdvancedArrangerPerformancePanel.jsx";\nimport RealtimeMusicalIntelligencePanel from "./components/RealtimeMusicalIntelligencePanel.jsx";\nimport RealtimeSequencedPlaybackPanel from "./components/RealtimeSequencedPlaybackPanel.jsx";
 import LiveArrangerAudioStreamPanel from "./components/LiveArrangerAudioStreamPanel.jsx";
 import WebAudioRuntimePanel from "./components/WebAudioRuntimePanel.jsx";
 import MidiRuntimeCommandSimulator from "./components/MidiRuntimeCommandSimulator.jsx";
@@ -557,5 +557,24 @@ if (!document.getElementById(workstationControlCenterRootId)) {
 
   createRoot(workstationControlCenterRoot).render(
     <WorkstationControlCenter />
+  );
+}
+
+
+const professionalWorkstationPanelRootId =
+  "professional-workstation-panel-root";
+
+if (!document.getElementById(professionalWorkstationPanelRootId)) {
+  const professionalWorkstationPanelRoot = document.createElement("div");
+
+  professionalWorkstationPanelRoot.id =
+    professionalWorkstationPanelRootId;
+
+  professionalWorkstationPanelRoot.style.margin = "24px";
+
+  document.body.appendChild(professionalWorkstationPanelRoot);
+
+  createRoot(professionalWorkstationPanelRoot).render(
+    <ProfessionalWorkstationPanel />
   );
 }
