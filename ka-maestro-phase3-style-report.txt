@@ -1,0 +1,64 @@
+﻿===== KA MAESTRO PHASE 3 STYLE EXTRACTION 05/30/2026 15:47:12 =====
+
+> keyboard-manager-backend@0.1.0 smoke
+> node src/scripts/smoke.js
+
+{
+  "ok": true,
+  "id": "Korg/sar.SET",
+  "brand": "Korg",
+  "fileCount": 147,
+  "size": 259606448,
+  "extensionTypes": 10,
+  "korg": {
+    "styleFiles": 15,
+    "padFiles": 0,
+    "soundFiles": 5,
+    "pcmFiles": 99,
+    "songBookFiles": 8,
+    "unknownFiles": 0
+  },
+  "style": {
+    "parser": "korg-style-bank-safe-scanner",
+    "banks": 15,
+    "slotCandidates": 480,
+    "families": {
+      "FAVORITE": {
+        "bankCount": 12,
+        "slotCandidateCount": 384
+      },
+      "USER": {
+        "bankCount": 3,
+        "slotCandidateCount": 96
+      }
+    }
+  },
+  "pad": {
+    "parser": "korg-pad-safe-scanner",
+    "folderPresent": true,
+    "files": 0
+  },
+  "dependencyGraph": {
+    "parser": "korg-set-dependency-safe-graph",
+    "nodes": 8,
+    "edges": 7
+  },
+  "parserLogs": 6,
+  "parserDiagnostics": 1
+}
+STATUS API failed: تعذر الاتصال بالملقم البعيد
+STYLE BANK API failed: تعذر الاتصال بالملقم البعيد
+
+> keyboard-manager-frontend@0.1.0 build
+> vite build
+
+[36mvite v8.0.14 [32mbuilding client environment for production...[36m[39m
+[2K
+transforming...ظ£ô 1574 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.57 kB ظ¤é gzip:  0.33 kB
+dist/assets/index-Brj77hgI.css   11.96 kB ظ¤é gzip:  3.27 kB
+dist/assets/index-JFGtMDZ1.js   167.37 kB ظ¤é gzip: 54.15 kB
+
+[32mظ£ô built in 1.55s[39m

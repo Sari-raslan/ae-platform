@@ -4,6 +4,10 @@ import { scanKorgDeep } from "./deepKorgScanner.js";
 
 const router = express.Router();
 
+const {
+  scanKorgStyleBanks
+} = require("./styleBankExtractor");
+
 function defaultSetPath() {
   return path.join(process.cwd(), "..", "samples", "Korg", "sar.SET");
 }
@@ -107,3 +111,24 @@ router.get("/dependency-graph", (req, res) => {
 });
 
 export default router;
+
+router.get("/style-banks", (req, res) => {
+  try {
+    const target =
+      req.query.path ||
+      path.join(
+        process.cwd(),
+        "..",
+        "samples",
+        "Korg",
+        "sar.SET"
+      );
+
+    res.json(scanKorgStyleBanks(target));
+  } catch (err) {
+    res.status(500).json({
+      ok: false,
+      error: err.message
+    });
+  }
+});
