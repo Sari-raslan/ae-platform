@@ -1,4 +1,4 @@
-import FinalArrangerKernelPanel from "./components/FinalArrangerKernelPanel.jsx";\nimport ProfessionalWorkstationPanel from "./components/ProfessionalWorkstationPanel.jsx";\nimport WorkstationControlCenter from "./components/WorkstationControlCenter.jsx";\nimport ProfessionalArrangerRuntimePanel from "./components/ProfessionalArrangerRuntimePanel.jsx";\nimport AdvancedArrangerPerformancePanel from "./components/AdvancedArrangerPerformancePanel.jsx";\nimport RealtimeMusicalIntelligencePanel from "./components/RealtimeMusicalIntelligencePanel.jsx";\nimport RealtimeSequencedPlaybackPanel from "./components/RealtimeSequencedPlaybackPanel.jsx";
+import UltimateArrangerOperatingSystemPanel from "./components/UltimateArrangerOperatingSystemPanel.jsx";\nimport FinalArrangerKernelPanel from "./components/FinalArrangerKernelPanel.jsx";\nimport ProfessionalWorkstationPanel from "./components/ProfessionalWorkstationPanel.jsx";\nimport WorkstationControlCenter from "./components/WorkstationControlCenter.jsx";\nimport ProfessionalArrangerRuntimePanel from "./components/ProfessionalArrangerRuntimePanel.jsx";\nimport AdvancedArrangerPerformancePanel from "./components/AdvancedArrangerPerformancePanel.jsx";\nimport RealtimeMusicalIntelligencePanel from "./components/RealtimeMusicalIntelligencePanel.jsx";\nimport RealtimeSequencedPlaybackPanel from "./components/RealtimeSequencedPlaybackPanel.jsx";
 import LiveArrangerAudioStreamPanel from "./components/LiveArrangerAudioStreamPanel.jsx";
 import WebAudioRuntimePanel from "./components/WebAudioRuntimePanel.jsx";
 import MidiRuntimeCommandSimulator from "./components/MidiRuntimeCommandSimulator.jsx";
@@ -598,5 +598,29 @@ if (!document.getElementById(finalArrangerKernelRootId)) {
 
   createRoot(finalArrangerKernelRoot).render(
     <FinalArrangerKernelPanel />
+  );
+}
+
+
+const ultimateArrangerOSRootId =
+  "ultimate-arranger-os-root";
+
+if (!document.getElementById(ultimateArrangerOSRootId)) {
+
+  const ultimateArrangerOSRoot =
+    document.createElement("div");
+
+  ultimateArrangerOSRoot.id =
+    ultimateArrangerOSRootId;
+
+  ultimateArrangerOSRoot.style.margin =
+    "24px";
+
+  document.body.appendChild(
+    ultimateArrangerOSRoot
+  );
+
+  createRoot(ultimateArrangerOSRoot).render(
+    <UltimateArrangerOperatingSystemPanel />
   );
 }
