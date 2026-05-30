@@ -1,3 +1,4 @@
+import RuntimeFinalReportPanel from "./components/RuntimeFinalReportPanel.jsx";
 import GlobalRuntimeKernelPanel from "./components/GlobalRuntimeKernelPanel.jsx";
 import FinalRuntimeKernelPanel from "./components/FinalRuntimeKernelPanel.jsx";
 import RuntimeExecutionPanel from "./components/RuntimeExecutionPanel.jsx";
@@ -469,3 +470,6 @@ createRoot(document.getElementById('root')).render(<App />);
 
 
 <GlobalRuntimeKernelPanel />
+
+
+<RuntimeFinalReportPanel />
