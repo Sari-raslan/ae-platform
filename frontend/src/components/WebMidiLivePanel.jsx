@@ -27,6 +27,7 @@ export default function WebMidiLivePanel() {
       for (const input of result.access.inputs.values()) {
         input.onmidimessage = (message) => {
           const decoded = decodeMidiMessage(message);
+
           setState((current) => ({
             ...current,
             events: [decoded, ...current.events].slice(0, 25),
@@ -35,69 +36,37 @@ export default function WebMidiLivePanel() {
       }
 
       setState({
-        ok: true,
-        connected: true,
-        inputs: result.inputs,
-        outputs: result.outputs,
-        events: [],
-        error: null,
-      });
-    } catch (error) {
-      setState((current) => ({
-        ...current,
-        ok: false,
-        error: error.message,
-      }));
-    }
-  }
+        ok
 
-  return (
-    <section className="rounded-2xl border border-white/10 bg-black/30 p-4">
-      <div className="mb-4 flex items-center justify-between gap-3">
-        <div>
-          <h2 className="text-xl font-semibold text-white">Web MIDI Live</h2>
-          <p className="text-sm text-white/60">
-            Connect real MIDI devices and monitor incoming notes.
-          </p>
-        </div>
-        <button
-          onClick={connect}
-          className="rounded-xl bg-white/10 px-4 py-2 text-sm text-white hover:bg-white/20"
-        >
-          Connect MIDI
-        </button>
-      </div>
+cd ~/universal-arranger-os
 
-      {state.error && (
-        <div className="mb-3 rounded-xl bg-red-500/20 p-3 text-sm text-red-100">
-          {state.error}
-        </div>
-      )}
+node - <<'EOF'
+import fs from "fs";
 
-      <div className="grid gap-3 md:grid-cols-3">
-        <div className="rounded-xl bg-white/5 p-3 text-white/80">
-          Inputs: {state.inputs.length}
-        </div>
-        <div className="rounded-xl bg-white/5 p-3 text-white/80">
-          Outputs: {state.outputs.length}
-        </div>
-        <div className="rounded-xl bg-white/5 p-3 text-white/80">
-          Events: {state.events.length}
-        </div>
-      </div>
+const file = "frontend/src/main.jsx";
+let content = fs.readFileSync(file, "utf8");
 
-      <pre className="mt-4 max-h-[360px] overflow-auto rounded-xl bg-black/40 p-4 text-xs text-white/80">
-        {JSON.stringify(
-          {
-            connected: state.connected,
-            inputs: state.inputs,
-            outputs: state.outputs,
-            events: state.events,
-          },
-          null,
-          2
-        )}
-      </pre>
-    </section>
+const panels = [
+  "RuntimeControlCenter",
+  "LiveArrangerConsole",
+  "LivePerformanceCenter",
+  "RuntimeMasterPanel",
+  "RuntimeExecutionPanel",
+  "FinalRuntimeKernelPanel",
+  "GlobalRuntimeKernelPanel",
+  "RuntimeFinalReportPanel",
+  "UniverseKernelPanel",
+  "InfiniteKernelPanel",
+  "OmegaKernelPanel",
+  "ApexKernelPanel",
+  "SingularityKernelPanel"
+];
+
+for (const panel of panels) {
+  content = content.replace(
+    new RegExp(`\\n<${panel} />\\s*`, "g"),
+    `\n// <${panel} /> disabled: must be rendered inside React tree\n`
   );
 }
+
+fs.writeFileSync(file, content);
