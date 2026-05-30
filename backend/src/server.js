@@ -1,3 +1,4 @@
+import { createFinalRuntimeKernel } from "./runtime/runtimeFinalKernel.js";
 import { createRuntimeExecutionPlatform } from "./runtime/runtimeExecutionPlatform.js";
 import { createRuntimeMasterSystem } from "./runtime/runtimeMasterSystem.js";
 import { registerRealtimeRuntimeApi } from "./runtime/runtimeRealtimeApi.js";
@@ -229,6 +230,22 @@ app.get("/api/runtime/master", async (req, res) => {
 app.get("/api/runtime/execution", async (req, res) => {
   try {
     const runtime = createRuntimeExecutionPlatform();
+
+    res.json(runtime);
+  } catch (error) {
+    res.status(500).json({
+      ok: false,
+      error: error.message,
+    });
+  }
+});
+
+
+
+
+app.get("/api/runtime/final-kernel", async (req, res) => {
+  try {
+    const runtime = createFinalRuntimeKernel();
 
     res.json(runtime);
   } catch (error) {

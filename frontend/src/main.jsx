@@ -1,3 +1,4 @@
+import FinalRuntimeKernelPanel from "./components/FinalRuntimeKernelPanel.jsx";
 import RuntimeExecutionPanel from "./components/RuntimeExecutionPanel.jsx";
 import RuntimeMasterPanel from "./components/RuntimeMasterPanel.jsx";
 import RealtimeTransportControls from "./components/RealtimeTransportControls.jsx";
@@ -461,3 +462,6 @@ createRoot(document.getElementById('root')).render(<App />);
 
 
 <RuntimeExecutionPanel />
+
+
+<FinalRuntimeKernelPanel />
