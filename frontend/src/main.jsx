@@ -1,10 +1,4 @@
-import ApexKernelPanel from "./components/ApexKernelPanel.jsx";
-import OmegaKernelPanel from "./components/OmegaKernelPanel.jsx";
-import InfiniteKernelPanel from "./components/InfiniteKernelPanel.jsx";
-import RuntimeFinalReportPanel from "./components/RuntimeFinalReportPanel.jsx";
-import GlobalRuntimeKernelPanel from "./components/GlobalRuntimeKernelPanel.jsx";
-import FinalRuntimeKernelPanel from "./components/FinalRuntimeKernelPanel.jsx";
-import RuntimeExecutionPanel from "./components/RuntimeExecutionPanel.jsx";
+import RuntimeControlCenter from "./components/RuntimeControlCenter.jsx";
 import RuntimeMasterPanel from "./components/RuntimeMasterPanel.jsx";
 import RealtimeTransportControls from "./components/RealtimeTransportControls.jsx";
 import LiveRuntimePanel from "./components/LiveRuntimePanel.jsx";
@@ -466,22 +460,6 @@ createRoot(document.getElementById('root')).render(<App />);
 <RuntimeMasterPanel />
 
 
-<RuntimeExecutionPanel />
 
 
-<FinalRuntimeKernelPanel />
-
-
-<GlobalRuntimeKernelPanel />
-
-
-<RuntimeFinalReportPanel />
-
-
-<InfiniteKernelPanel />
-
-
-<OmegaKernelPanel />
-
-
-<ApexKernelPanel />
+<RuntimeControlCenter />
