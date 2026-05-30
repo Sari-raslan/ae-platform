@@ -1,4 +1,4 @@
-import MidiRuntimeCommandSimulator from "./components/MidiRuntimeCommandSimulator.jsx";
+import WebAudioRuntimePanel from "./components/WebAudioRuntimePanel.jsx";\nimport MidiRuntimeCommandSimulator from "./components/MidiRuntimeCommandSimulator.jsx";
 import RuntimeControlCenter from "./components/RuntimeControlCenter.jsx";
 import RuntimeMasterPanel from "./components/RuntimeMasterPanel.jsx";
 import RealtimeTransportControls from "./components/RealtimeTransportControls.jsx";
@@ -463,4 +463,16 @@ if (!document.getElementById(runtimeControlCenterRootId)) {
   document.body.appendChild(runtimeControlCenterRoot);
 
   createRoot(runtimeControlCenterRoot).render(<RuntimeControlCenter />);
+}
+
+
+const webAudioRuntimeRootId = "webaudio-runtime-root";
+
+if (!document.getElementById(webAudioRuntimeRootId)) {
+  const webAudioRuntimeRoot = document.createElement("div");
+  webAudioRuntimeRoot.id = webAudioRuntimeRootId;
+  webAudioRuntimeRoot.style.margin = "24px";
+  document.body.appendChild(webAudioRuntimeRoot);
+
+  createRoot(webAudioRuntimeRoot).render(<WebAudioRuntimePanel />);
 }
