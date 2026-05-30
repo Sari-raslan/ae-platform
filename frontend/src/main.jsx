@@ -282,19 +282,7 @@ function App() {
         <AnalysisViewer analysis={selected} busy={busy} />
       </section>
 
-      <MidiMonitor />
-    <MidiDashboard />
-<AIDashboard />
-<ReleasePanel />
-<UltimateDashboard />
-<EmotionalHero />
-<MusicMoodPanel />
-<ArrangerDashboard />
-<AuthPanel />
-<HagelAudioManager />
 
-<LiveRuntimePanel />
-<RealtimeTransportControls />
 </main>
   );
 }
@@ -458,12 +446,9 @@ createRoot(document.getElementById('root')).render(<App />);
 
 
 
-<RuntimeMasterPanel />
 
 
 
 
-<RuntimeControlCenter />
 
 
-<MidiRuntimeCommandSimulator />
