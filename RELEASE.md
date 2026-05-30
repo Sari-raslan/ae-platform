@@ -1,37 +1,5 @@
 # Universal Arranger OS — Official Launch Candidate
 
-Status: Official Launch Candidate
-
-Core systems:
-- SET parser
-- runtime dashboard
-- realtime transport
-- WebAudio playback
-- realtime sequenced loop
-- MIDI foundation
-- chord-follow engine
-- arranger runtime
-- workstation control center
-- final integration phase
-
-Launch command:
-
-```bash
-cd frontend
-npm run dev -- --host 0.0.0.0
-cd ~/universal-arranger-os
-
-git status
-
-npm run build
-
-mkdir -p samples/Korg/sar.SET/PAD
-
-npm run smoke
-
-cat > RELEASE.md <<'EOF'
-# Universal Arranger OS — Official Launch Candidate
-
 Status: OFFICIAL RELEASE CANDIDATE
 
 Integrated Systems:
