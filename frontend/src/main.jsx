@@ -1,4 +1,4 @@
-import RealtimeSequencedPlaybackPanel from "./components/RealtimeSequencedPlaybackPanel.jsx";
+import RealtimeMusicalIntelligencePanel from "./components/RealtimeMusicalIntelligencePanel.jsx";\nimport RealtimeSequencedPlaybackPanel from "./components/RealtimeSequencedPlaybackPanel.jsx";
 import LiveArrangerAudioStreamPanel from "./components/LiveArrangerAudioStreamPanel.jsx";
 import WebAudioRuntimePanel from "./components/WebAudioRuntimePanel.jsx";
 import MidiRuntimeCommandSimulator from "./components/MidiRuntimeCommandSimulator.jsx";
@@ -502,4 +502,18 @@ if (!document.getElementById(realtimeSequencedPlaybackRootId)) {
   document.body.appendChild(realtimeSequencedPlaybackRoot);
 
   createRoot(realtimeSequencedPlaybackRoot).render(<RealtimeSequencedPlaybackPanel />);
+}
+
+
+const realtimeMusicalIntelligenceRootId = "realtime-musical-intelligence-root";
+
+if (!document.getElementById(realtimeMusicalIntelligenceRootId)) {
+  const realtimeMusicalIntelligenceRoot = document.createElement("div");
+  realtimeMusicalIntelligenceRoot.id = realtimeMusicalIntelligenceRootId;
+  realtimeMusicalIntelligenceRoot.style.margin = "24px";
+  document.body.appendChild(realtimeMusicalIntelligenceRoot);
+
+  createRoot(realtimeMusicalIntelligenceRoot).render(
+    <RealtimeMusicalIntelligencePanel />
+  );
 }
