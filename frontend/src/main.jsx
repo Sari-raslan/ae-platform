@@ -3,13 +3,13 @@ import ReactDOM from "react-dom/client";
 
 import "./index.css";
 
-import ProductionArrangerWorkspace
-from "./components/ProductionArrangerWorkspace.jsx";
+import RealtimeProductionSuite
+from "./components/RealtimeProductionSuite.jsx";
 
 ReactDOM.createRoot(
   document.getElementById("root")
 ).render(
   <React.StrictMode>
-    <ProductionArrangerWorkspace />
+    <RealtimeProductionSuite />
   </React.StrictMode>
 );
