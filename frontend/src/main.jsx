@@ -1,3 +1,4 @@
+import FinalPhaseRegistryPanel from "./components/FinalPhaseRegistryPanel.jsx";
 import ProductionRuntimeGatePanel from "./components/ProductionRuntimeGatePanel.jsx";
 import UltimateArrangerOperatingSystemPanel from "./components/UltimateArrangerOperatingSystemPanel.jsx";
 import FinalArrangerKernelPanel from "./components/FinalArrangerKernelPanel.jsx";
@@ -645,5 +646,19 @@ if (!document.getElementById(productionRuntimeGateRootId)) {
 
   createRoot(productionRuntimeGateRoot).render(
     <ProductionRuntimeGatePanel />
+  );
+}
+
+
+const finalPhaseRegistryRootId = "final-phase-registry-root";
+
+if (!document.getElementById(finalPhaseRegistryRootId)) {
+  const finalPhaseRegistryRoot = document.createElement("div");
+  finalPhaseRegistryRoot.id = finalPhaseRegistryRootId;
+  finalPhaseRegistryRoot.style.margin = "24px";
+  document.body.appendChild(finalPhaseRegistryRoot);
+
+  createRoot(finalPhaseRegistryRoot).render(
+    <FinalPhaseRegistryPanel />
   );
 }
