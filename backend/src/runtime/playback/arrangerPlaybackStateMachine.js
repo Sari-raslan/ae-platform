@@ -1,43 +1,31 @@
-export function createArrangerPlaybackStateMachine() {
+export function createArrangerPlaybackStateMachine(initial = {}) {
   let state = {
-    status: "stopped",
-    tempo: 120,
+    status: initial.status || "stopped",
+    tempo: initial.tempo || 120,
+    styleId: initial.styleId || null,
+    variation: initial.variation || "VAR1",
+    pendingVariation: null,
+    pendingFill: null,
     bar: 1,
     beat: 1,
     tick: 0,
-    ppq: 24
+    ppq: initial.ppq || 24,
+    updatedAt: new Date().toISOString(),
   };
 
   function snapshot() {
-    return { ok: true, ...state };
-  }
+    return
+cd ~/universal-arranger-os
 
-  function start() {
-    state.status = "playing";
-    return snapshot();
-  }
-
-  function stop() {
-    state.status = "stopped";
-    state.bar = 1;
-    state.beat = 1;
-    state.tick = 0;
-    return snapshot();
-  }
-
-  function advanceTick() {
-    if (state.status !== "playing") return snapshot();
-    state.tick += 1;
-    if (state.tick >= state.ppq) {
-      state.tick = 0;
-      state.beat += 1;
-    }
-    if (state.beat > 4) {
-      state.beat = 1;
-      state.bar += 1;
-    }
-    return snapshot();
-  }
-
-  return { snapshot, start, stop, advanceTick };
-}
+cat > backend/src/runtime/playback/arrangerPlaybackStateMachine.js <<'EOF'
+export function createArrangerPlaybackStateMachine(initial = {}) {
+  let state = {
+    status: initial.status || "stopped",
+    tempo: initial.tempo || 120,
+    styleId: initial.styleId || null,
+    variation: initial.variation || "VAR1",
+    pendingVariation: null,
+    pendingFill: null,
+    bar: 1,
+    beat: 1,
+    tick:
