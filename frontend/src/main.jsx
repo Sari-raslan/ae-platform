@@ -1,4 +1,7 @@
-import RealtimeSequencedPlaybackPanel from "./components/RealtimeSequencedPlaybackPanel.jsx";\nimport LiveArrangerAudioStreamPanel from "./components/LiveArrangerAudioStreamPanel.jsx";\nimport WebAudioRuntimePanel from "./components/WebAudioRuntimePanel.jsx";\nimport MidiRuntimeCommandSimulator from "./components/MidiRuntimeCommandSimulator.jsx";
+import RealtimeSequencedPlaybackPanel from "./components/RealtimeSequencedPlaybackPanel.jsx";
+import LiveArrangerAudioStreamPanel from "./components/LiveArrangerAudioStreamPanel.jsx";
+import WebAudioRuntimePanel from "./components/WebAudioRuntimePanel.jsx";
+import MidiRuntimeCommandSimulator from "./components/MidiRuntimeCommandSimulator.jsx";
 import RuntimeControlCenter from "./components/RuntimeControlCenter.jsx";
 import RuntimeMasterPanel from "./components/RuntimeMasterPanel.jsx";
 import RealtimeTransportControls from "./components/RealtimeTransportControls.jsx";
