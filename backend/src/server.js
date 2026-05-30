@@ -1,3 +1,4 @@
+import { createInfiniteKernel } from "./runtime/runtimeInfiniteKernel.js";
 import { createRuntimeFinalReport } from "./runtime/runtimeFinalReport.js";
 import { createGlobalRuntimeKernel } from "./runtime/runtimeGlobalKernel.js";
 import { createFinalRuntimeKernel } from "./runtime/runtimeFinalKernel.js";
@@ -281,6 +282,22 @@ app.get("/api/runtime/final-report", async (req, res) => {
   try {
     const report = createRuntimeFinalReport();
     res.json(report);
+  } catch (error) {
+    res.status(500).json({
+      ok: false,
+      error: error.message,
+    });
+  }
+});
+
+
+
+
+app.get("/api/runtime/infinite-kernel", async (req, res) => {
+  try {
+    const runtime = createInfiniteKernel();
+
+    res.json(runtime);
   } catch (error) {
     res.status(500).json({
       ok: false,

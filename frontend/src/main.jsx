@@ -1,3 +1,4 @@
+import InfiniteKernelPanel from "./components/InfiniteKernelPanel.jsx";
 import RuntimeFinalReportPanel from "./components/RuntimeFinalReportPanel.jsx";
 import GlobalRuntimeKernelPanel from "./components/GlobalRuntimeKernelPanel.jsx";
 import FinalRuntimeKernelPanel from "./components/FinalRuntimeKernelPanel.jsx";
@@ -473,3 +474,6 @@ createRoot(document.getElementById('root')).render(<App />);
 
 
 <RuntimeFinalReportPanel />
+
+
+<InfiniteKernelPanel />
