@@ -1,3 +1,4 @@
+import { registerRealtimeRuntimeApi } from "./runtime/runtimeRealtimeApi.js";
 import { buildFrontendRuntimeBridge } from "./runtime/runtimeFrontendBridge.js";
 ﻿import express from 'express';
 import cors from 'cors';
@@ -201,6 +202,9 @@ app.get("/api/runtime/dashboard", async (req, res) => {
   }
 });
 
+
+
+registerRealtimeRuntimeApi(app);
 
 app.listen(port, () => {
   console.log(`Keyboard Manager backend listening on http://localhost:${port}`);

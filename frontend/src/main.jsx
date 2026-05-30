@@ -1,3 +1,4 @@
+import RealtimeTransportControls from "./components/RealtimeTransportControls.jsx";
 import LiveRuntimePanel from "./components/LiveRuntimePanel.jsx";
 ﻿import HagelAudioManager from "./components/hagel/HagelAudioManager";
 import EmotionalHero from "./components/emotion/EmotionalHero";
@@ -290,6 +291,7 @@ function App() {
 <HagelAudioManager />
 
 <LiveRuntimePanel />
+<RealtimeTransportControls />
 </main>
   );
 }
