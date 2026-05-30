@@ -1,3 +1,4 @@
+import { buildFrontendRuntimeBridge } from "./runtime/runtimeFrontendBridge.js";
 ﻿import express from 'express';
 import cors from 'cors';
 import multer from 'multer';
@@ -185,6 +186,22 @@ app.delete('/api/library/:id', async (req, res) => {
 });
 
 const port = Number(process.env.PORT || 4000);
+
+
+app.get("/api/runtime/dashboard", async (req, res) => {
+  try {
+    const dashboard = buildFrontendRuntimeBridge();
+
+    res.json(dashboard);
+  } catch (error) {
+    res.status(500).json({
+      ok: false,
+      error: error.message,
+    });
+  }
+});
+
+
 app.listen(port, () => {
   console.log(`Keyboard Manager backend listening on http://localhost:${port}`);
 });
