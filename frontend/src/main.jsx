@@ -1,4 +1,12 @@
-import UltimateArrangerOperatingSystemPanel from "./components/UltimateArrangerOperatingSystemPanel.jsx";\nimport FinalArrangerKernelPanel from "./components/FinalArrangerKernelPanel.jsx";\nimport ProfessionalWorkstationPanel from "./components/ProfessionalWorkstationPanel.jsx";\nimport WorkstationControlCenter from "./components/WorkstationControlCenter.jsx";\nimport ProfessionalArrangerRuntimePanel from "./components/ProfessionalArrangerRuntimePanel.jsx";\nimport AdvancedArrangerPerformancePanel from "./components/AdvancedArrangerPerformancePanel.jsx";\nimport RealtimeMusicalIntelligencePanel from "./components/RealtimeMusicalIntelligencePanel.jsx";\nimport RealtimeSequencedPlaybackPanel from "./components/RealtimeSequencedPlaybackPanel.jsx";
+import ProductionRuntimeGatePanel from "./components/ProductionRuntimeGatePanel.jsx";
+import UltimateArrangerOperatingSystemPanel from "./components/UltimateArrangerOperatingSystemPanel.jsx";
+import FinalArrangerKernelPanel from "./components/FinalArrangerKernelPanel.jsx";
+import ProfessionalWorkstationPanel from "./components/ProfessionalWorkstationPanel.jsx";
+import WorkstationControlCenter from "./components/WorkstationControlCenter.jsx";
+import ProfessionalArrangerRuntimePanel from "./components/ProfessionalArrangerRuntimePanel.jsx";
+import AdvancedArrangerPerformancePanel from "./components/AdvancedArrangerPerformancePanel.jsx";
+import RealtimeMusicalIntelligencePanel from "./components/RealtimeMusicalIntelligencePanel.jsx";
+import RealtimeSequencedPlaybackPanel from "./components/RealtimeSequencedPlaybackPanel.jsx";
 import LiveArrangerAudioStreamPanel from "./components/LiveArrangerAudioStreamPanel.jsx";
 import WebAudioRuntimePanel from "./components/WebAudioRuntimePanel.jsx";
 import MidiRuntimeCommandSimulator from "./components/MidiRuntimeCommandSimulator.jsx";
@@ -342,7 +350,8 @@ function AnalysisViewer({ analysis, busy }) {
       {analysis.metadata && <KeyValue title="Binary metadata" data={analysis.metadata} />}
       {analysis.extensionCounts && <KeyValue title="Extensions" data={analysis.extensionCounts} />}
       {analysis.hexPreview && <CodeBlock title="Hex preview" value={analysis.hexPreview} />}
-      {!!analysis.strings?.length && <CodeBlock title="Extracted strings" value={analysis.strings.join('\n')} />}
+      {!!analysis.strings?.length && <CodeBlock title="Extracted strings" value={analysis.strings.join('
+')} />}
       {!!analysis.children?.length && (
         <div>
           <h4>Contained files</h4>
@@ -622,5 +631,19 @@ if (!document.getElementById(ultimateArrangerOSRootId)) {
 
   createRoot(ultimateArrangerOSRoot).render(
     <UltimateArrangerOperatingSystemPanel />
+  );
+}
+
+
+const productionRuntimeGateRootId = "production-runtime-gate-root";
+
+if (!document.getElementById(productionRuntimeGateRootId)) {
+  const productionRuntimeGateRoot = document.createElement("div");
+  productionRuntimeGateRoot.id = productionRuntimeGateRootId;
+  productionRuntimeGateRoot.style.margin = "24px";
+  document.body.appendChild(productionRuntimeGateRoot);
+
+  createRoot(productionRuntimeGateRoot).render(
+    <ProductionRuntimeGatePanel />
   );
 }
