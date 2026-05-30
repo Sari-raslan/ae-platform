@@ -452,3 +452,15 @@ createRoot(document.getElementById('root')).render(<App />);
 
 
 
+
+
+const runtimeControlCenterRootId = "runtime-control-center-root";
+
+if (!document.getElementById(runtimeControlCenterRootId)) {
+  const runtimeControlCenterRoot = document.createElement("div");
+  runtimeControlCenterRoot.id = runtimeControlCenterRootId;
+  runtimeControlCenterRoot.style.margin = "24px";
+  document.body.appendChild(runtimeControlCenterRoot);
+
+  createRoot(runtimeControlCenterRoot).render(<RuntimeControlCenter />);
+}
