@@ -1,3 +1,13 @@
+import { createApexKernel } from "./runtime/runtimeApexKernel.js";
+import { createOmegaKernel } from "./runtime/runtimeOmegaKernel.js";
+import { createInfiniteKernel } from "./runtime/runtimeInfiniteKernel.js";
+import { createRuntimeFinalReport } from "./runtime/runtimeFinalReport.js";
+import { createGlobalRuntimeKernel } from "./runtime/runtimeGlobalKernel.js";
+import { createFinalRuntimeKernel } from "./runtime/runtimeFinalKernel.js";
+import { createRuntimeExecutionPlatform } from "./runtime/runtimeExecutionPlatform.js";
+import { createRuntimeMasterSystem } from "./runtime/runtimeMasterSystem.js";
+import { registerRealtimeRuntimeApi } from "./runtime/runtimeRealtimeApi.js";
+import { buildFrontendRuntimeBridge } from "./runtime/runtimeFrontendBridge.js";
 ﻿import express from 'express';
 import cors from 'cors';
 import multer from 'multer';
@@ -185,6 +195,152 @@ app.delete('/api/library/:id', async (req, res) => {
 });
 
 const port = Number(process.env.PORT || 4000);
+
+
+app.get("/api/runtime/dashboard", async (req, res) => {
+  try {
+    const dashboard = buildFrontendRuntimeBridge();
+
+    res.json(dashboard);
+  } catch (error) {
+    res.status(500).json({
+      ok: false,
+      error: error.message,
+    });
+  }
+});
+
+
+
+registerRealtimeRuntimeApi(app);
+
+
+
+app.get("/api/runtime/master", async (req, res) => {
+  try {
+    const runtime = createRuntimeMasterSystem();
+
+    res.json(runtime);
+  } catch (error) {
+    res.status(500).json({
+      ok: false,
+      error: error.message,
+    });
+  }
+});
+
+
+
+
+app.get("/api/runtime/execution", async (req, res) => {
+  try {
+    const runtime = createRuntimeExecutionPlatform();
+
+    res.json(runtime);
+  } catch (error) {
+    res.status(500).json({
+      ok: false,
+      error: error.message,
+    });
+  }
+});
+
+
+
+
+app.get("/api/runtime/final-kernel", async (req, res) => {
+  try {
+    const runtime = createFinalRuntimeKernel();
+
+    res.json(runtime);
+  } catch (error) {
+    res.status(500).json({
+      ok: false,
+      error: error.message,
+    });
+  }
+});
+
+
+
+
+app.get("/api/runtime/global-kernel", async (req, res) => {
+  try {
+    const runtime = createGlobalRuntimeKernel();
+
+    res.json(runtime);
+  } catch (error) {
+    res.status(500).json({
+      ok: false,
+      error: error.message,
+    });
+  }
+});
+
+
+
+
+app.get("/api/runtime/final-report", async (req, res) => {
+  try {
+    const report = createRuntimeFinalReport();
+    res.json(report);
+  } catch (error) {
+    res.status(500).json({
+      ok: false,
+      error: error.message,
+    });
+  }
+});
+
+
+
+
+app.get("/api/runtime/infinite-kernel", async (req, res) => {
+  try {
+    const runtime = createInfiniteKernel();
+
+    res.json(runtime);
+  } catch (error) {
+    res.status(500).json({
+      ok: false,
+      error: error.message,
+    });
+  }
+});
+
+
+
+
+app.get("/api/runtime/omega-kernel", async (req, res) => {
+  try {
+    const runtime = createOmegaKernel();
+
+    res.json(runtime);
+  } catch (error) {
+    res.status(500).json({
+      ok: false,
+      error: error.message,
+    });
+  }
+});
+
+
+
+
+app.get("/api/runtime/apex-kernel", async (req, res) => {
+  try {
+    const runtime = createApexKernel();
+
+    res.json(runtime);
+  } catch (error) {
+    res.status(500).json({
+      ok: false,
+      error: error.message,
+    });
+  }
+});
+
+
 app.listen(port, () => {
   console.log(`Keyboard Manager backend listening on http://localhost:${port}`);
 });
