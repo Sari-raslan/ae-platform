@@ -1,3 +1,4 @@
+import { createRuntimeMasterSystem } from "./runtime/runtimeMasterSystem.js";
 import { registerRealtimeRuntimeApi } from "./runtime/runtimeRealtimeApi.js";
 import { buildFrontendRuntimeBridge } from "./runtime/runtimeFrontendBridge.js";
 ﻿import express from 'express';
@@ -205,6 +206,22 @@ app.get("/api/runtime/dashboard", async (req, res) => {
 
 
 registerRealtimeRuntimeApi(app);
+
+
+
+app.get("/api/runtime/master", async (req, res) => {
+  try {
+    const runtime = createRuntimeMasterSystem();
+
+    res.json(runtime);
+  } catch (error) {
+    res.status(500).json({
+      ok: false,
+      error: error.message,
+    });
+  }
+});
+
 
 app.listen(port, () => {
   console.log(`Keyboard Manager backend listening on http://localhost:${port}`);

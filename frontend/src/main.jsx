@@ -1,3 +1,4 @@
+import RuntimeMasterPanel from "./components/RuntimeMasterPanel.jsx";
 import RealtimeTransportControls from "./components/RealtimeTransportControls.jsx";
 import LiveRuntimePanel from "./components/LiveRuntimePanel.jsx";
 ﻿import HagelAudioManager from "./components/hagel/HagelAudioManager";
@@ -453,3 +454,6 @@ createRoot(document.getElementById('root')).render(<App />);
 
 
 
+
+
+<RuntimeMasterPanel />
