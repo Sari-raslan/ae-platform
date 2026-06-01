@@ -40,8 +40,8 @@ function createWindow(){
 
   const win = new BrowserWindow({
 
-    width:1920,
-    height:1080,
+    width:1800,
+    height:1040,
 
     minWidth:1280,
     minHeight:820,

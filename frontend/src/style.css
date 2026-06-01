@@ -1,7 +1,7 @@
 ﻿body{
   margin:0;
   background:#050816;
-  color:#ffffff;
+  color:white;
   font-family:Arial,sans-serif;
 }
 
@@ -30,8 +30,16 @@ main{
 .box{
   padding:20px;
   border-radius:16px;
-  border:1px solid #2a3350;
+  border:1px solid #2b3350;
   background:#091023;
+}
+
+.toolbar,
+.keys{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin:14px 0;
 }
 
 button{
@@ -46,4 +54,12 @@ button{
 
 button:hover{
   background:#9cffb0;
+}
+
+pre{
+  background:#02040a;
+  border-radius:12px;
+  padding:16px;
+  overflow:auto;
+  min-height:160px;
 }

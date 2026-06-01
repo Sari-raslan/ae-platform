@@ -9,12 +9,12 @@ export default function App(){
       <h1>Universal Arranger OS</h1>
 
       <p className="ok">
-        TITAN WORKSTATION ONLINE
+        OMEGA WORKSTATION ONLINE
       </p>
 
       <section className="panel">
 
-        <h2>TITAN Runtime Core</h2>
+        <h2>Omega Runtime Core</h2>
 
         <div className="grid">
 
@@ -25,32 +25,37 @@ export default function App(){
 
           <div className="box">
             <h3>Audio DSP Engine</h3>
-            <p>Realtime DSP Ready</p>
+            <p>Professional DSP Ready</p>
           </div>
 
           <div className="box">
             <h3>MIDI Runtime</h3>
-            <p>Hardware MIDI Ready</p>
+            <p>Realtime MIDI Ready</p>
           </div>
 
           <div className="box">
-            <h3>Arranger Runtime</h3>
-            <p>Realtime Style Engine Ready</p>
+            <h3>Arranger Engine</h3>
+            <p>Realtime Style Runtime Ready</p>
           </div>
 
           <div className="box">
-            <h3>Sampler Runtime</h3>
-            <p>Streaming Samples Ready</p>
+            <h3>Sample Engine</h3>
+            <p>Streaming Multisample Ready</p>
           </div>
 
           <div className="box">
             <h3>Mixer Runtime</h3>
-            <p>Bus Routing Ready</p>
+            <p>Realtime Mixer Ready</p>
           </div>
 
           <div className="box">
             <h3>Sequencer Runtime</h3>
-            <p>Realtime Sequencer Ready</p>
+            <p>Timeline Engine Ready</p>
+          </div>
+
+          <div className="box">
+            <h3>Automation Runtime</h3>
+            <p>Realtime Automation Ready</p>
           </div>
 
           <div className="box">
@@ -69,13 +74,8 @@ export default function App(){
           </div>
 
           <div className="box">
-            <h3>Recording Runtime</h3>
-            <p>Audio Recording Ready</p>
-          </div>
-
-          <div className="box">
-            <h3>Export Runtime</h3>
-            <p>WAV / MP3 Export Ready</p>
+            <h3>Hardware Runtime</h3>
+            <p>MIDI Hardware Ready</p>
           </div>
 
         </div>

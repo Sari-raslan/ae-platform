@@ -24,7 +24,7 @@
                             "electron-builder":  "^24.13.3"
                         },
     "build":  {
-                  "appId":  "com.universalarranger.titan",
+                  "appId":  "com.universalarranger.omega",
                   "productName":  "Universal Arranger OS",
                   "directories":  {
                                       "output":  "release"
