@@ -1,0 +1,36 @@
+﻿body {
+  margin: 0;
+  background: #050816;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+main {
+  padding: 40px;
+}
+
+.ok {
+  color: #9cffb0;
+}
+
+.panel {
+  margin-top: 24px;
+  background: #0d1324;
+  border: 1px solid #28324f;
+  border-radius: 18px;
+  padding: 24px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.box {
+  margin-top: 18px;
+  padding: 18px;
+  border-radius: 14px;
+  background: #091023;
+  border: 1px solid #2a3350;
+}
