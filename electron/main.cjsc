@@ -18,7 +18,7 @@ const LOG_FILE = path.join(
   "runtime.log"
 );
 
-function log(channel,type,payload={}){
+function writeLog(channel,type,payload={}){
 
   if(!fs.existsSync(LOG_DIR)){
     fs.mkdirSync(LOG_DIR,{recursive:true});
@@ -40,11 +40,11 @@ function createWindow(){
 
   const win = new BrowserWindow({
 
-    width:1440,
-    height:920,
+    width:1920,
+    height:1080,
 
-    minWidth:1100,
-    minHeight:720,
+    minWidth:1280,
+    minHeight:820,
 
     backgroundColor:"#050816",
 
@@ -79,7 +79,7 @@ app.whenReady().then(()=>{
     "uaos:log",
     (_event,channel,type,payload)=>{
 
-      log(channel,type,payload);
+      writeLog(channel,type,payload);
 
       return {ok:true};
     }
@@ -97,15 +97,23 @@ app.on("window-all-closed",()=>{
 
 process.on("uncaughtException",(error)=>{
 
-  log("electron","uncaughtException",{
-    message:error.message,
-    stack:error.stack
-  });
+  writeLog(
+    "electron",
+    "uncaughtException",
+    {
+      message:error.message,
+      stack:error.stack
+    }
+  );
 });
 
 process.on("unhandledRejection",(reason)=>{
 
-  log("electron","unhandledRejection",{
-    reason:String(reason)
-  });
+  writeLog(
+    "electron",
+    "unhandledRejection",
+    {
+      reason:String(reason)
+    }
+  );
 });

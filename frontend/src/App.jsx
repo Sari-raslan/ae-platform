@@ -3,17 +3,18 @@
 export default function App(){
 
   return(
+
     <main>
 
       <h1>Universal Arranger OS</h1>
 
       <p className="ok">
-        AI Workstation Runtime ONLINE
+        TITAN WORKSTATION ONLINE
       </p>
 
       <section className="panel">
 
-        <h2>Runtime Core</h2>
+        <h2>TITAN Runtime Core</h2>
 
         <div className="grid">
 
@@ -23,28 +24,58 @@ export default function App(){
           </div>
 
           <div className="box">
-            <h3>Audio Engine</h3>
-            <p>DSP Runtime Ready</p>
+            <h3>Audio DSP Engine</h3>
+            <p>Realtime DSP Ready</p>
           </div>
 
           <div className="box">
             <h3>MIDI Runtime</h3>
-            <p>Realtime MIDI Ready</p>
+            <p>Hardware MIDI Ready</p>
           </div>
 
           <div className="box">
             <h3>Arranger Runtime</h3>
-            <p>Style Engine Ready</p>
+            <p>Realtime Style Engine Ready</p>
           </div>
 
           <div className="box">
-            <h3>Sample Engine</h3>
-            <p>Multisample Runtime Ready</p>
+            <h3>Sampler Runtime</h3>
+            <p>Streaming Samples Ready</p>
+          </div>
+
+          <div className="box">
+            <h3>Mixer Runtime</h3>
+            <p>Bus Routing Ready</p>
+          </div>
+
+          <div className="box">
+            <h3>Sequencer Runtime</h3>
+            <p>Realtime Sequencer Ready</p>
+          </div>
+
+          <div className="box">
+            <h3>Plugin Runtime</h3>
+            <p>Plugin Host Ready</p>
+          </div>
+
+          <div className="box">
+            <h3>Cloud Runtime</h3>
+            <p>Cloud Sync Ready</p>
           </div>
 
           <div className="box">
             <h3>AI Runtime</h3>
-            <p>AI Assistant Layer Ready</p>
+            <p>AI Assistant Ready</p>
+          </div>
+
+          <div className="box">
+            <h3>Recording Runtime</h3>
+            <p>Audio Recording Ready</p>
+          </div>
+
+          <div className="box">
+            <h3>Export Runtime</h3>
+            <p>WAV / MP3 Export Ready</p>
           </div>
 
         </div>

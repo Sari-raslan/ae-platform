@@ -2,6 +2,7 @@
 import react from "@vitejs/plugin-react";
 
 export default defineConfig({
+
   base: "./",
 
   plugins: [react()],
@@ -15,7 +16,8 @@ export default defineConfig({
   build: {
     outDir: "dist",
     emptyOutDir: true,
-    sourcemap: true
+    sourcemap: true,
+    target: "chrome120"
   },
 
   server: {
