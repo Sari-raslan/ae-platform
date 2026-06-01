@@ -1,19 +1,19 @@
 ﻿import "./style.css";
 
-export default function App() {
+export default function App(){
 
-  return (
+  return(
     <main>
 
       <h1>Universal Arranger OS</h1>
 
       <p className="ok">
-        Professional Workstation Runtime ONLINE
+        AI Workstation Runtime ONLINE
       </p>
 
       <section className="panel">
 
-        <h2>Runtime Status</h2>
+        <h2>Runtime Core</h2>
 
         <div className="grid">
 
@@ -24,27 +24,27 @@ export default function App() {
 
           <div className="box">
             <h3>Audio Engine</h3>
-            <p>DSP Ready</p>
+            <p>DSP Runtime Ready</p>
           </div>
 
           <div className="box">
             <h3>MIDI Runtime</h3>
-            <p>Ready</p>
+            <p>Realtime MIDI Ready</p>
           </div>
 
           <div className="box">
-            <h3>Style Engine</h3>
-            <p>Arranger Runtime Ready</p>
+            <h3>Arranger Runtime</h3>
+            <p>Style Engine Ready</p>
           </div>
 
           <div className="box">
             <h3>Sample Engine</h3>
-            <p>Multisample Ready</p>
+            <p>Multisample Runtime Ready</p>
           </div>
 
           <div className="box">
-            <h3>Desktop Build</h3>
-            <p>Packaging Ready</p>
+            <h3>AI Runtime</h3>
+            <p>AI Assistant Layer Ready</p>
           </div>
 
         </div>

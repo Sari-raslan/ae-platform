@@ -1,12 +1,12 @@
 ﻿const { contextBridge, ipcRenderer } = require("electron");
 
-contextBridge.exposeInMainWorld("uaos", {
+contextBridge.exposeInMainWorld("uaos",{
 
-  ping: () => Promise.resolve({ ok: true }),
+  ping:()=>Promise.resolve({ok:true}),
 
-  health: () => Promise.resolve({ ok: true }),
+  health:()=>Promise.resolve({ok:true}),
 
-  log: (channel, type, payload = {}) =>
+  log:(channel,type,payload={})=>
     ipcRenderer.invoke(
       "uaos:log",
       channel,

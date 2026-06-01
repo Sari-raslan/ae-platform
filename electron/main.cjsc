@@ -18,16 +18,16 @@ const LOG_FILE = path.join(
   "runtime.log"
 );
 
-function writeLog(channel, type, payload = {}) {
+function log(channel,type,payload={}){
 
-  if (!fs.existsSync(LOG_DIR)) {
-    fs.mkdirSync(LOG_DIR, { recursive: true });
+  if(!fs.existsSync(LOG_DIR)){
+    fs.mkdirSync(LOG_DIR,{recursive:true});
   }
 
   fs.appendFileSync(
     LOG_FILE,
     JSON.stringify({
-      time: new Date().toISOString(),
+      time:new Date().toISOString(),
       channel,
       type,
       payload
@@ -36,30 +36,30 @@ function writeLog(channel, type, payload = {}) {
   );
 }
 
-function createWindow() {
+function createWindow(){
 
   const win = new BrowserWindow({
 
-    width: 1440,
-    height: 920,
+    width:1440,
+    height:920,
 
-    minWidth: 1100,
-    minHeight: 720,
+    minWidth:1100,
+    minHeight:720,
 
-    backgroundColor: "#050816",
+    backgroundColor:"#050816",
 
-    webPreferences: {
-      preload: path.join(__dirname, "preload.cjs"),
-      contextIsolation: true,
-      nodeIntegration: false
+    webPreferences:{
+      preload:path.join(__dirname,"preload.cjs"),
+      contextIsolation:true,
+      nodeIntegration:false
     }
   });
 
-  if (fs.existsSync(DIST_INDEX)) {
+  if(fs.existsSync(DIST_INDEX)){
 
     win.loadFile(DIST_INDEX);
 
-  } else {
+  }else{
 
     win.loadURL(
       "data:text/html;charset=utf-8," +
@@ -73,47 +73,39 @@ function createWindow() {
   }
 }
 
-app.whenReady().then(() => {
+app.whenReady().then(()=>{
 
   ipcMain.handle(
     "uaos:log",
-    (_event, channel, type, payload) => {
+    (_event,channel,type,payload)=>{
 
-      writeLog(channel, type, payload);
+      log(channel,type,payload);
 
-      return { ok: true };
+      return {ok:true};
     }
   );
 
   createWindow();
 });
 
-app.on("window-all-closed", () => {
+app.on("window-all-closed",()=>{
 
-  if (process.platform !== "darwin") {
+  if(process.platform !== "darwin"){
     app.quit();
   }
 });
 
-process.on("uncaughtException", (error) => {
+process.on("uncaughtException",(error)=>{
 
-  writeLog(
-    "electron",
-    "uncaughtException",
-    {
-      message: error.message,
-      stack: error.stack
-    }
-  );
+  log("electron","uncaughtException",{
+    message:error.message,
+    stack:error.stack
+  });
 });
 
-process.on("unhandledRejection", (reason) => {
+process.on("unhandledRejection",(reason)=>{
 
-  writeLog(
-    "electron",
-    "unhandledRejection",
-    {
-      reason: String(reason)
-    }
-  );
+  log("electron","unhandledRejection",{
+    reason:String(reason)
+  });
 });

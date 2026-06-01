@@ -16,5 +16,11 @@ export default defineConfig({
     outDir: "dist",
     emptyOutDir: true,
     sourcemap: true
+  },
+
+  server: {
+    host: "127.0.0.1",
+    port: 5173,
+    strictPort: true
   }
 });
