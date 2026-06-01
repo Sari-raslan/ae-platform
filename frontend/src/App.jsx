@@ -1,5 +1,5 @@
 ﻿import "./style.css";
-import MidiPanel from "./ui/MidiPanel.jsx";
+import RealMidiPanel from "./ui/RealMidiPanel.jsx";
 
 export default function App() {
   return (
@@ -7,10 +7,10 @@ export default function App() {
       <h1>Universal Arranger OS</h1>
 
       <p className="ok">
-        Real MIDI Runtime Online
+        Real MIDI + Audio Test Runtime Online
       </p>
 
-      <MidiPanel />
+      <RealMidiPanel />
     </main>
   );
 }

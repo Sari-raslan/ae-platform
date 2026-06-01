@@ -1,47 +1,55 @@
-﻿export class MidiEngine {
+﻿import { audioEngine } from "../audio/AudioEngine";
+
+export class MidiEngine {
   constructor() {
-    this.midiAccess = null;
+    this.access = null;
     this.inputs = [];
     this.outputs = [];
     this.listeners = [];
     this.activeNotes = new Set();
+    this.clockCount = 0;
   }
 
-  onEvent(callback) {
+  on(callback) {
     this.listeners.push(callback);
+
     return () => {
       this.listeners = this.listeners.filter((cb) => cb !== callback);
     };
   }
 
-  emit(type, data = {}) {
+  emit(type, payload = {}) {
     const event = {
       type,
-      data,
+      payload,
       time: performance.now(),
       iso: new Date().toISOString()
     };
 
     this.listeners.forEach((cb) => cb(event));
+
     return event;
   }
 
-  async initialize() {
+  async start() {
+    await audioEngine.start();
+
     if (!navigator.requestMIDIAccess) {
       this.emit("midi:error", {
-        message: "Web MIDI API غير متوفر في هذا النظام"
+        message: "Web MIDI API غير مدعوم داخل هذا النظام"
       });
+
       return false;
     }
 
     try {
-      this.midiAccess = await navigator.requestMIDIAccess({
+      this.access = await navigator.requestMIDIAccess({
         sysex: false
       });
 
       this.refreshDevices();
 
-      this.midiAccess.onstatechange = () => {
+      this.access.onstatechange = () => {
         this.refreshDevices();
       };
 
@@ -55,17 +63,18 @@
       this.emit("midi:error", {
         message: error.message
       });
+
       return false;
     }
   }
 
   refreshDevices() {
-    this.inputs = Array.from(this.midiAccess.inputs.values());
-    this.outputs = Array.from(this.midiAccess.outputs.values());
+    this.inputs = Array.from(this.access?.inputs?.values?.() || []);
+    this.outputs = Array.from(this.access?.outputs?.values?.() || []);
 
     this.inputs.forEach((input) => {
       input.onmidimessage = (message) => {
-        this.handleMidiMessage(message, input);
+        this.handleMessage(message, input);
       };
     });
 
@@ -87,7 +96,7 @@
     });
   }
 
-  handleMidiMessage(message, input) {
+  handleMessage(message, input) {
     const data = Array.from(message.data);
     const status = data[0];
     const command = status & 0xf0;
@@ -98,6 +107,7 @@
 
     if (command === 0x90 && velocity > 0) {
       this.activeNotes.add(note);
+      audioEngine.noteOn(note, velocity);
 
       this.emit("midi:noteon", {
         input: input.name,
@@ -112,6 +122,7 @@
 
     if (command === 0x80 || command === 0x90) {
       this.activeNotes.delete(note);
+      audioEngine.noteOff(note);
 
       this.emit("midi:noteoff", {
         input: input.name,
@@ -148,8 +159,11 @@
     }
 
     if (status === 0xf8) {
+      this.clockCount++;
+
       this.emit("midi:clock", {
-        input: input.name
+        input: input.name,
+        clockCount: this.clockCount
       });
 
       return;
@@ -176,6 +190,29 @@
       channel,
       data
     });
+  }
+
+  testNote(note = 60) {
+    audioEngine.noteOn(note, 100);
+
+    this.emit("midi:test-noteon", {
+      note
+    });
+
+    setTimeout(() => {
+      audioEngine.noteOff(note);
+
+      this.emit("midi:test-noteoff", {
+        note
+      });
+    }, 400);
+  }
+
+  panic() {
+    audioEngine.panic();
+    this.activeNotes.clear();
+
+    this.emit("midi:panic", {});
   }
 }
 

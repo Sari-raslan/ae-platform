@@ -35,6 +35,28 @@ main {
   background: #091023;
 }
 
+.toolbar,
+.keys {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 14px 0;
+}
+
+button {
+  border: 0;
+  padding: 12px 18px;
+  border-radius: 10px;
+  background: white;
+  color: #050816;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:hover {
+  background: #9cffb0;
+}
+
 pre {
   white-space: pre-wrap;
   background: #02040a;
