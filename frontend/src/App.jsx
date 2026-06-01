@@ -1,16 +1,12 @@
 ﻿import "./style.css";
-import ArrangerPanel from "./ui/ArrangerPanel.jsx";
+import MidiArrangerPanel from "./ui/MidiArrangerPanel.jsx";
 
 export default function App() {
   return (
     <main>
       <h1>Universal Arranger OS</h1>
-
-      <p className="ok">
-        Real Arranger Playback Engine Online
-      </p>
-
-      <ArrangerPanel />
+      <p className="ok">MIDI Chord Detection + Arranger Control Online</p>
+      <MidiArrangerPanel />
     </main>
   );
 }
