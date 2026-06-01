@@ -30,36 +30,6 @@ main{
 .box{
   padding:20px;
   border-radius:16px;
-  border:1px solid #2b3350;
+  border:1px solid #2a3350;
   background:#091023;
-}
-
-.toolbar,
-.keys{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  margin:14px 0;
-}
-
-button{
-  border:0;
-  padding:12px 18px;
-  border-radius:10px;
-  background:white;
-  color:#050816;
-  cursor:pointer;
-  font-weight:bold;
-}
-
-button:hover{
-  background:#9cffb0;
-}
-
-pre{
-  background:#02040a;
-  border-radius:12px;
-  padding:16px;
-  overflow:auto;
-  min-height:160px;
 }

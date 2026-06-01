@@ -1,52 +1,61 @@
 ﻿{
-    "name":  "universal-arranger-os",
-    "version":  "0.3.0",
-    "description":  "Universal Arranger OS - MIDI arranger with real-time performance, chord detection, and style playback",
-    "author":  "Keyboard Manager Team",
-    "license":  "MIT",
-    "main":  "electron/main.cjs",
-    "homepage":  "./",
-    "scripts":  {
-                    "dev":  "npm run frontend:dev",
-                    "build":  "npm run frontend:build",
-                    "smoke":  "npm run backend:smoke",
-                    "frontend:dev":  "cd frontend \u0026\u0026 npm run dev",
-                    "backend:smoke":  "cd backend \u0026\u0026 npm run smoke",
-                    "desktop:dev":  "electron electron/main.cjs",
-                    "desktop:pack":  "cd frontend \u0026\u0026 npm run build \u0026\u0026 electron-builder --dir",
-                    "frontend:build":  "cd frontend \u0026\u0026 npm run build",
-                    "desktop:start":  "electron electron/main.cjs",
-                    "desktop:build":  "cd frontend \u0026\u0026 npm run build \u0026\u0026 electron-builder",
-                    "release:win":  "cd frontend \u0026\u0026 npm run build \u0026\u0026 electron-builder --win nsis portable"
-                },
-    "devDependencies":  {
-                            "electron":  "^31.7.7",
-                            "electron-builder":  "^24.13.3"
-                        },
-    "build":  {
-                  "appId":  "com.universalarranger.omega",
-                  "productName":  "Universal Arranger OS",
-                  "directories":  {
-                                      "output":  "release"
-                                  },
-                  "files":  [
-                                "electron/**/*",
-                                "frontend/dist/**/*",
-                                "package.json"
-                            ],
-                  "win":  {
-                              "target":  [
-                                             "nsis",
-                                             "portable"
-                                         ],
-                              "artifactName":  "${productName}-${version}-${arch}.${ext}"
-                          },
-                  "nsis":  {
-                               "oneClick":  false,
-                               "allowToChangeInstallationDirectory":  true,
-                               "createDesktopShortcut":  true,
-                               "createStartMenuShortcut":  true,
-                               "shortcutName":  "Universal Arranger OS"
-                           }
-              }
+  "name": "universal-arranger-os",
+
+  "version": "10.0.0",
+
+  "main": "electron/main.cjs",
+
+  "scripts": {
+
+    "desktop:start": "electron electron/main.cjs",
+
+    "frontend:build": "cd frontend && npm run build",
+
+    "desktop:build": "cd frontend && npm run build && electron-builder",
+
+    "release:win": "cd frontend && npm run build && electron-builder --win nsis portable"
+  },
+
+  "devDependencies": {
+
+    "electron": "^30.0.0",
+
+    "electron-builder": "^24.0.0"
+  },
+
+  "build": {
+
+    "appId": "com.universalarranger.enterprise",
+
+    "productName": "Universal Arranger OS",
+
+    "directories": {
+      "output": "release"
+    },
+
+    "files": [
+      "electron/**/*",
+      "frontend/dist/**/*",
+      "package.json"
+    ],
+
+    "win": {
+
+      "target": [
+        "nsis",
+        "portable"
+      ]
+    },
+
+    "nsis": {
+
+      "oneClick": false,
+
+      "allowToChangeInstallationDirectory": true,
+
+      "createDesktopShortcut": true,
+
+      "createStartMenuShortcut": true
+    }
+  }
 }
