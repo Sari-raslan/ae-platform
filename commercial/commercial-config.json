@@ -1,0 +1,27 @@
+﻿{
+  "product": "Universal Arranger OS",
+  "version": "7.0.0",
+  "channel": "commercial-prep",
+  "purchaseEnabled": false,
+  "payments": {
+    "stripe": {
+      "enabled": false,
+      "publishableKey": "PASTE_STRIPE_PUBLISHABLE_KEY_HERE",
+      "priceId": "PASTE_STRIPE_PRICE_ID_HERE"
+    },
+    "paypal": {
+      "enabled": false,
+      "clientId": "PASTE_PAYPAL_CLIENT_ID_HERE"
+    }
+  },
+  "licensing": {
+    "enabled": false,
+    "mode": "local-placeholder"
+  },
+  "autoUpdate": {
+    "enabled": false,
+    "provider": "github",
+    "owner": "Sari-raslan",
+    "repo": "ae-platform"
+  }
+}

@@ -1,0 +1,7 @@
+﻿{
+  "version": "7.0.0",
+  "channel": "commercial-prep",
+  "latestInstaller": "release/",
+  "latestPortable": "release/",
+  "notes": "Commercial pipeline prepared. Payment and licensing require real account keys."
+}
