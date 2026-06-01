@@ -1,4 +1,4 @@
-{
+﻿{
   "name": "universal-arranger-os",
   "version": "0.3.0",
   "description": "Universal Arranger OS - MIDI arranger with real-time performance, chord detection, and style playback",
@@ -56,3 +56,4 @@
     }
   }
 }
+

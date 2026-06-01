@@ -1,6 +1,6 @@
-﻿const { contextBridge } = require("electron");
+﻿const { contextBridge, ipcRenderer } = require("electron");
 
-contextBridge.exposeInMainWorld("UniversalArrangerOS", {
-  desktopRuntime: true,
-  platform: process.platform
+contextBridge.exposeInMainWorld("uaos", {
+  ping: () => Promise.resolve({ ok: true }),
+  health: () => Promise.resolve({ ok: true })
 });
