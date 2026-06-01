@@ -35,15 +35,15 @@ main {
   border: 1px solid #2a3350;
 }
 
-.toolbar,
-.keys {
+.toolbar {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
   margin-top: 12px;
 }
 
-button {
+button,
+.fileButton {
   border: 0;
   background: white;
   color: black;
@@ -51,14 +51,20 @@ button {
   padding: 12px 18px;
   cursor: pointer;
   font-weight: bold;
+  display: inline-block;
 }
 
-button:hover {
+button:hover,
+.fileButton:hover {
   background: #9cffb0;
 }
 
-input {
-  width: 100%;
-  margin-top: 8px;
-  margin-bottom: 14px;
+pre {
+  background: black;
+  border-radius: 12px;
+  padding: 12px;
+  overflow: auto;
+  min-height: 120px;
+  max-height: 360px;
+  white-space: pre-wrap;
 }
