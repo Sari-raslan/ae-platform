@@ -1,0 +1,21 @@
+{
+  "scripts": {
+    "desktop:dev": "electron electron/main.cjs",
+    "desktop:build": "electron-builder"
+  },
+  "devDependencies": {
+    "electron": "^31.7.7",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.universalarranger.os",
+    "productName": "Universal Arranger OS",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "electron/**/*",
+      "frontend/dist/**/*"
+    ]
+  }
+}

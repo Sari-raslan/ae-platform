@@ -1,0 +1,20 @@
+﻿UNIVERSAL ARRANGER OS
+
+NEXT PHASE STRUCTURE GENERATED
+
+SAFE MODE:
+- no overwrite
+- no delete
+- no npm install
+- no git commit
+- no git push
+
+GENERATED:
+- MIDI foundation
+- sample engine foundation
+- DSP foundation
+- style parser foundation
+- Electron foundation
+- Android plan
+- PWA plan
+- Release roadmap
