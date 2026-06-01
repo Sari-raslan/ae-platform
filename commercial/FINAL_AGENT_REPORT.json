@@ -1,0 +1,18 @@
+﻿{
+  "product": "Universal Arranger OS",
+  "version": "7.6.0",
+  "phase": "closed-beta-commercial-pipeline",
+  "generatedAt": "2026-06-02T01:54:43",
+  "frontendBuild": true,
+  "exeCount": 0,
+  "secretsCommitted": false,
+  "betaFeedback": true,
+  "localLicenseServer": true,
+  "commercialWebsiteLocal": true,
+  "next": [
+    "rotate Stripe key",
+    "place new keys in .env.commercial.local only",
+    "test server locally",
+    "upload release artifacts manually or with GitHub token"
+  ]
+}

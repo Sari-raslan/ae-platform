@@ -1,0 +1,14 @@
+﻿{
+  "name": "uaos-commercial-server",
+  "version": "7.5.0",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "stripe": "^14.25.0"
+  }
+}
