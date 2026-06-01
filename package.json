@@ -13,9 +13,9 @@
                     "frontend:dev":  "cd frontend \u0026\u0026 npm run dev",
                     "backend:smoke":  "cd backend \u0026\u0026 npm run smoke",
                     "desktop:dev":  "electron electron/main.cjs",
+                    "desktop:pack":  "cd frontend \u0026\u0026 npm run build \u0026\u0026 electron-builder --dir",
                     "frontend:build":  "cd frontend \u0026\u0026 npm run build",
                     "desktop:start":  "electron electron/main.cjs",
-                    "desktop:pack":  "cd frontend \u0026\u0026 npm run build \u0026\u0026 electron-builder --dir",
                     "desktop:build":  "cd frontend \u0026\u0026 npm run build \u0026\u0026 electron-builder",
                     "release:win":  "cd frontend \u0026\u0026 npm run build \u0026\u0026 electron-builder --win nsis portable"
                 },
