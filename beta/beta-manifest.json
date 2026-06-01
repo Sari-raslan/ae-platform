@@ -1,0 +1,13 @@
+﻿{
+  "product": "Universal Arranger OS",
+  "phase": "beta-testing",
+  "version": "v6.1.0-beta-agent",
+  "status": "beta-package-ready",
+  "generatedAt": "2026-06-02T01:05:22",
+  "outputs": [
+    "release/",
+    "beta/BETA_TEST_GUIDE.md",
+    "beta/FEEDBACK_FORM.md",
+    "docs/OVERNIGHT_AGENT_REPORT.md"
+  ]
+}
