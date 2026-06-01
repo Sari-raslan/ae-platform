@@ -1,0 +1,10 @@
+﻿{
+  "product": "Universal Arranger OS",
+  "channel": "commercial",
+  "generatedAt": "2026-06-02T01:24:10",
+  "githubTokenConfigured": True,
+  "stripeConfigured": True,
+  "paypalConfigured": True,
+  "codeSigningConfigured": True,
+  "websiteDeployConfigured": True
+}
