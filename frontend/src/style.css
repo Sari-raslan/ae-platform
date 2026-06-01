@@ -6,7 +6,7 @@
 }
 
 main {
-  padding: 40px;
+  padding: 36px;
 }
 
 .ok {
@@ -14,7 +14,7 @@ main {
 }
 
 .panel {
-  margin-top: 32px;
+  margin-top: 28px;
   padding: 24px;
   border: 1px solid #2b3350;
   border-radius: 16px;
@@ -24,17 +24,26 @@ main {
 .grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 24px;
+  gap: 18px;
 }
 
+.box {
+  padding: 18px;
+  border: 1px solid #27304a;
+  border-radius: 14px;
+  background: #091023;
+}
+
+.toolbar,
 .keys {
   display: flex;
-  gap: 8px;
+  gap: 10px;
   flex-wrap: wrap;
+  margin: 14px 0;
 }
 
 button {
-  padding: 14px 20px;
+  padding: 12px 16px;
   border: 0;
   border-radius: 10px;
   background: #ffffff;
@@ -47,10 +56,18 @@ button:hover {
   background: #9cffb0;
 }
 
+input,
+select {
+  display: block;
+  margin-top: 8px;
+  padding: 8px;
+  width: 180px;
+}
+
 pre {
   background: #02040a;
   padding: 16px;
   border-radius: 12px;
   overflow: auto;
-  min-height: 120px;
+  min-height: 160px;
 }

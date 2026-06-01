@@ -19,10 +19,12 @@
     };
 
     this.history.unshift(event);
-    this.history = this.history.slice(0, 100);
+    this.history = this.history.slice(0, 300);
 
     this.listeners.get(type)?.forEach((cb) => cb(event));
     this.listeners.get("*")?.forEach((cb) => cb(event));
+
+    window.uaos?.log?.("runtime", type, payload);
 
     return event;
   }

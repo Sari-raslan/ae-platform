@@ -1,31 +1,24 @@
 ﻿import { runtimeBus } from "../runtime/runtimeBus";
+import { audioRuntime } from "../audio/audioRuntime";
 
 export class MidiRuntime {
   constructor() {
     this.access = null;
     this.inputs = [];
     this.outputs = [];
-    this.available = false;
     this.activeNotes = new Set();
   }
 
   async init() {
     if (!navigator.requestMIDIAccess) {
-      runtimeBus.emit("midi:unavailable", {
-        reason: "Web MIDI API not available in this Electron runtime"
-      });
+      runtimeBus.emit("midi:unavailable", { reason: "Web MIDI API unavailable" });
       return false;
     }
 
     try {
       this.access = await navigator.requestMIDIAccess({ sysex: false });
-      this.available = true;
-
       this.refreshDevices();
-
-      this.access.onstatechange = () => {
-        this.refreshDevices();
-      };
+      this.access.onstatechange = () => this.refreshDevices();
 
       runtimeBus.emit("midi:ready", {
         inputs: this.inputs.length,
@@ -34,9 +27,7 @@ export class MidiRuntime {
 
       return true;
     } catch (error) {
-      runtimeBus.emit("midi:error", {
-        message: error.message
-      });
+      runtimeBus.emit("midi:error", { message: error.message });
       return false;
     }
   }
@@ -72,6 +63,7 @@ export class MidiRuntime {
 
     if (command === 0x90 && velocity > 0) {
       this.activeNotes.add(note);
+      audioRuntime.noteOn(note, velocity, "midi");
       runtimeBus.emit("midi:noteon", {
         input: input.name,
         channel,
@@ -81,6 +73,7 @@ export class MidiRuntime {
       });
     } else if (command === 0x80 || command === 0x90) {
       this.activeNotes.delete(note);
+      audioRuntime.noteOff(note, "midi");
       runtimeBus.emit("midi:noteoff", {
         input: input.name,
         channel,
@@ -99,6 +92,8 @@ export class MidiRuntime {
 
   simulateNote(note = 60, velocity = 100) {
     this.activeNotes.add(note);
+    audioRuntime.noteOn(note, velocity, "sim");
+
     runtimeBus.emit("midi:noteon", {
       input: "Simulator",
       channel: 1,
@@ -109,6 +104,8 @@ export class MidiRuntime {
 
     setTimeout(() => {
       this.activeNotes.delete(note);
+      audioRuntime.noteOff(note, "sim");
+
       runtimeBus.emit("midi:noteoff", {
         input: "Simulator",
         channel: 1,
@@ -116,7 +113,7 @@ export class MidiRuntime {
         velocity: 0,
         activeNotes: Array.from(this.activeNotes)
       });
-    }, 400);
+    }, 350);
   }
 }
 

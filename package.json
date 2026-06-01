@@ -1,59 +1,52 @@
 ﻿{
-  "name": "universal-arranger-os",
-  "version": "0.3.0",
-  "description": "Universal Arranger OS - MIDI arranger with real-time performance, chord detection, and style playback",
-  "author": "Keyboard Manager Team",
-  "license": "MIT",
-  "main": "electron/main.cjs",
-  "homepage": "./",
-  "scripts": {
-    "dev": "npm run frontend:dev",
-    "build": "npm run frontend:build",
-    "smoke": "npm run backend:smoke",
-    "frontend:dev": "cd frontend && npm run dev",
-    "frontend:build": "cd frontend && npm run build",
-    "backend:smoke": "cd backend && npm run smoke",
-    "desktop:dev": "electron electron/main.cjs",
-    "desktop:build": "npm run frontend:build && electron-builder"
-  },
-  "devDependencies": {
-    "electron": "^31.7.7",
-    "electron-builder": "^24.13.3"
-  },
-  "build": {
-    "appId": "com.universalarranger.os",
-    "productName": "Universal Arranger OS",
-    "directories": {
-      "output": "release",
-      "buildResources": "frontend/public"
-    },
-    "files": [
-      "electron/**/*",
-      "frontend/dist/**/*",
-      "node_modules/**/*"
-    ],
-    "win": {
-      "target": [
-        "nsis",
-        "portable"
-      ]
-    },
-    "nsis": {
-      "oneClick": false,
-      "allowToChangeInstallationDirectory": true
-    },
-    "mac": {
-      "target": [
-        "dmg",
-        "zip"
-      ]
-    },
-    "linux": {
-      "target": [
-        "AppImage",
-        "deb"
-      ]
-    }
-  }
+    "name":  "universal-arranger-os",
+    "version":  "0.3.0",
+    "description":  "Universal Arranger OS - MIDI arranger with real-time performance, chord detection, and style playback",
+    "author":  "Keyboard Manager Team",
+    "license":  "MIT",
+    "main":  "electron/main.cjs",
+    "homepage":  "./",
+    "scripts":  {
+                    "dev":  "npm run frontend:dev",
+                    "build":  "npm run frontend:build",
+                    "smoke":  "npm run backend:smoke",
+                    "frontend:dev":  "cd frontend \u0026\u0026 npm run dev",
+                    "backend:smoke":  "cd backend \u0026\u0026 npm run smoke",
+                    "desktop:dev":  "electron electron/main.cjs",
+                    "frontend:build":  "cd frontend \u0026\u0026 npm run build",
+                    "desktop:start":  "electron electron/main.cjs",
+                    "desktop:pack":  "cd frontend \u0026\u0026 npm run build \u0026\u0026 electron-builder --dir",
+                    "desktop:build":  "cd frontend \u0026\u0026 npm run build \u0026\u0026 electron-builder",
+                    "release:win":  "cd frontend \u0026\u0026 npm run build \u0026\u0026 electron-builder --win nsis portable"
+                },
+    "devDependencies":  {
+                            "electron":  "^31.7.7",
+                            "electron-builder":  "^24.13.3"
+                        },
+    "build":  {
+                  "appId":  "com.universalarranger.os",
+                  "productName":  "Universal Arranger OS",
+                  "directories":  {
+                                      "output":  "release"
+                                  },
+                  "files":  [
+                                "electron/**/*",
+                                "frontend/dist/**/*",
+                                "package.json"
+                            ],
+                  "win":  {
+                              "target":  [
+                                             "nsis",
+                                             "portable"
+                                         ],
+                              "artifactName":  "${productName}-${version}-${arch}.${ext}"
+                          },
+                  "nsis":  {
+                               "oneClick":  false,
+                               "allowToChangeInstallationDirectory":  true,
+                               "createDesktopShortcut":  true,
+                               "createStartMenuShortcut":  true,
+                               "shortcutName":  "Universal Arranger OS"
+                           }
+              }
 }
-
