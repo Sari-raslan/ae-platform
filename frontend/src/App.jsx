@@ -1,22 +1,12 @@
 ﻿import "./style.css";
-import YamahaTrackPanel from "./ui/YamahaTrackPanel.jsx";
+import MidiFileParserPanel from "./ui/MidiFileParserPanel.jsx";
 
 export default function App() {
-
   return (
     <main>
-
-      <h1>
-        Universal Arranger OS
-      </h1>
-
-      <p className="ok">
-        Real Yamaha Track Playback Online
-      </p>
-
-      <YamahaTrackPanel />
-
+      <h1>Universal Arranger OS</h1>
+      <p className="ok">MIDI File Event Parser Foundation Online</p>
+      <MidiFileParserPanel />
     </main>
   );
-
 }
