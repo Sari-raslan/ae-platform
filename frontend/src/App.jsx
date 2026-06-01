@@ -1,12 +1,12 @@
 ﻿import "./style.css";
-import FinalWorkstationPanel from "./ui/FinalWorkstationPanel.jsx";
+import StylePlayerPanel from "./ui/StylePlayerPanel.jsx";
 
 export default function App() {
   return (
     <main>
       <h1>Universal Arranger OS</h1>
-      <p className="ok">Final MIDI + DSP + Arranger Runtime Online</p>
-      <FinalWorkstationPanel />
+      <p className="ok">Yamaha / KORG Style Engine Foundation Online</p>
+      <StylePlayerPanel />
     </main>
   );
 }
