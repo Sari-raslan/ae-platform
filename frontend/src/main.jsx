@@ -1,16 +1,5 @@
 ﻿import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
+import App from "./App.jsx";
 
-function App() {
-  return (
-    <main className="app">
-      <h1>Universal Arranger OS</h1>
-      <p>Runtime OK</p>
-    </main>
-  );
-}
-
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <App />
-);
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
