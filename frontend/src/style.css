@@ -35,8 +35,19 @@ main {
   border: 1px solid #2a3350;
 }
 
+.bigStage {
+  text-align: center;
+  background: #111c35;
+}
+
+.bigStage h1 {
+  font-size: 44px;
+  margin: 20px 0;
+}
+
 .toolbar,
-.keys {
+.keys,
+.sceneGrid {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
@@ -56,15 +67,16 @@ button,
 }
 
 button:hover,
-.fileButton:hover {
+.fileButton:hover,
+.activeScene {
   background: #9cffb0;
 }
 
-input,
-select {
+input {
   width: 100%;
   margin-top: 8px;
   margin-bottom: 14px;
+  padding: 8px;
 }
 
 pre {
@@ -80,11 +92,4 @@ pre {
   margin-top: 14px;
   padding-top: 14px;
   border-top: 1px solid #2a3350;
-}
-
-.clip {
-  background: #18213a;
-  padding: 10px;
-  border-radius: 10px;
-  margin-top: 10px;
 }
