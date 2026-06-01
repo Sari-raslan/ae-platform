@@ -1,4 +1,4 @@
-﻿import { audioEngine } from "../audio/AudioEngine";
+﻿import { audioDSP } from "../audio/AudioDSP";
 
 export class MidiEngine {
   constructor() {
@@ -7,7 +7,6 @@ export class MidiEngine {
     this.outputs = [];
     this.listeners = [];
     this.activeNotes = new Set();
-    this.clockCount = 0;
   }
 
   on(callback) {
@@ -27,45 +26,35 @@ export class MidiEngine {
     };
 
     this.listeners.forEach((cb) => cb(event));
-
-    return event;
   }
 
   async start() {
-    await audioEngine.start();
+    await audioDSP.start();
 
     if (!navigator.requestMIDIAccess) {
       this.emit("midi:error", {
-        message: "Web MIDI API غير مدعوم داخل هذا النظام"
+        message: "Web MIDI غير مدعوم"
       });
 
       return false;
     }
 
-    try {
-      this.access = await navigator.requestMIDIAccess({
-        sysex: false
-      });
+    this.access = await navigator.requestMIDIAccess({
+      sysex: false
+    });
 
+    this.refreshDevices();
+
+    this.access.onstatechange = () => {
       this.refreshDevices();
+    };
 
-      this.access.onstatechange = () => {
-        this.refreshDevices();
-      };
+    this.emit("midi:ready", {
+      inputs: this.inputs.length,
+      outputs: this.outputs.length
+    });
 
-      this.emit("midi:ready", {
-        inputs: this.inputs.length,
-        outputs: this.outputs.length
-      });
-
-      return true;
-    } catch (error) {
-      this.emit("midi:error", {
-        message: error.message
-      });
-
-      return false;
-    }
+    return true;
   }
 
   refreshDevices() {
@@ -79,19 +68,17 @@ export class MidiEngine {
     });
 
     this.emit("midi:devices", {
-      inputs: this.inputs.map((input) => ({
-        id: input.id,
-        name: input.name,
-        manufacturer: input.manufacturer,
-        state: input.state,
-        connection: input.connection
+      inputs: this.inputs.map((i) => ({
+        id: i.id,
+        name: i.name,
+        manufacturer: i.manufacturer,
+        state: i.state
       })),
-      outputs: this.outputs.map((output) => ({
-        id: output.id,
-        name: output.name,
-        manufacturer: output.manufacturer,
-        state: output.state,
-        connection: output.connection
+      outputs: this.outputs.map((o) => ({
+        id: o.id,
+        name: o.name,
+        manufacturer: o.manufacturer,
+        state: o.state
       }))
     });
   }
@@ -101,13 +88,12 @@ export class MidiEngine {
     const status = data[0];
     const command = status & 0xf0;
     const channel = (status & 0x0f) + 1;
-
     const note = data[1];
     const velocity = data[2];
 
     if (command === 0x90 && velocity > 0) {
       this.activeNotes.add(note);
-      audioEngine.noteOn(note, velocity);
+      audioDSP.noteOn(note, velocity);
 
       this.emit("midi:noteon", {
         input: input.name,
@@ -122,7 +108,7 @@ export class MidiEngine {
 
     if (command === 0x80 || command === 0x90) {
       this.activeNotes.delete(note);
-      audioEngine.noteOff(note);
+      audioDSP.noteOff(note);
 
       this.emit("midi:noteoff", {
         input: input.name,
@@ -158,33 +144,6 @@ export class MidiEngine {
       return;
     }
 
-    if (status === 0xf8) {
-      this.clockCount++;
-
-      this.emit("midi:clock", {
-        input: input.name,
-        clockCount: this.clockCount
-      });
-
-      return;
-    }
-
-    if (status === 0xfa) {
-      this.emit("midi:start", {
-        input: input.name
-      });
-
-      return;
-    }
-
-    if (status === 0xfc) {
-      this.emit("midi:stop", {
-        input: input.name
-      });
-
-      return;
-    }
-
     this.emit("midi:message", {
       input: input.name,
       channel,
@@ -193,14 +152,14 @@ export class MidiEngine {
   }
 
   testNote(note = 60) {
-    audioEngine.noteOn(note, 100);
+    audioDSP.noteOn(note, 100);
 
     this.emit("midi:test-noteon", {
       note
     });
 
     setTimeout(() => {
-      audioEngine.noteOff(note);
+      audioDSP.noteOff(note);
 
       this.emit("midi:test-noteoff", {
         note
@@ -209,7 +168,7 @@ export class MidiEngine {
   }
 
   panic() {
-    audioEngine.panic();
+    audioDSP.panic();
     this.activeNotes.clear();
 
     this.emit("midi:panic", {});
