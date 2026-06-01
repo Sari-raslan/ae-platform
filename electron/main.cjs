@@ -13,16 +13,16 @@ function createWindow() {
     }
   });
 
+  win.webContents.openDevTools();
+
+  win.webContents.on("did-fail-load", (_event, code, description) => {
+    console.error("Electron failed load:", code, description);
+  });
+
   win.loadFile(path.join(__dirname, "../frontend/dist/index.html"));
 }
 
-app.whenReady().then(() => {
-  createWindow();
-
-  app.on("activate", () => {
-    if (BrowserWindow.getAllWindows().length === 0) createWindow();
-  });
-});
+app.whenReady().then(createWindow);
 
 app.on("window-all-closed", () => {
   if (process.platform !== "darwin") app.quit();

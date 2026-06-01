@@ -1,7 +1,20 @@
 {
+  "name": "universal-arranger-os",
+  "version": "0.3.0",
+  "description": "Universal Arranger OS - MIDI arranger with real-time performance, chord detection, and style playback",
+  "author": "Keyboard Manager Team",
+  "license": "MIT",
+  "main": "electron/main.cjs",
+  "homepage": "./",
   "scripts": {
+    "dev": "npm run frontend:dev",
+    "build": "npm run frontend:build",
+    "smoke": "npm run backend:smoke",
+    "frontend:dev": "cd frontend && npm run dev",
+    "frontend:build": "cd frontend && npm run build",
+    "backend:smoke": "cd backend && npm run smoke",
     "desktop:dev": "electron electron/main.cjs",
-    "desktop:build": "electron-builder"
+    "desktop:build": "npm run frontend:build && electron-builder"
   },
   "devDependencies": {
     "electron": "^31.7.7",
@@ -11,11 +24,35 @@
     "appId": "com.universalarranger.os",
     "productName": "Universal Arranger OS",
     "directories": {
-      "output": "release"
+      "output": "release",
+      "buildResources": "frontend/public"
     },
     "files": [
       "electron/**/*",
-      "frontend/dist/**/*"
-    ]
+      "frontend/dist/**/*",
+      "node_modules/**/*"
+    ],
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "mac": {
+      "target": [
+        "dmg",
+        "zip"
+      ]
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ]
+    }
   }
 }
