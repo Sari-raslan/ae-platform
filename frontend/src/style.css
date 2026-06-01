@@ -35,7 +35,8 @@ main {
   background: #091023;
 }
 
-.toolbar {
+.toolbar,
+.keys {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
@@ -59,12 +60,15 @@ button:hover,
   background: #9cffb0;
 }
 
-input[type="range"] {
+input {
+  display: block;
+  margin: 8px 0 14px;
   width: 100%;
 }
 
-.sampleSlot {
+.sampleSlot,
+.channelStrip {
   border-top: 1px solid #2a3350;
-  padding-top: 14px;
-  margin-top: 14px;
+  padding-top: 12px;
+  margin-top: 12px;
 }

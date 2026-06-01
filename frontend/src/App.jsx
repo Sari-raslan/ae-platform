@@ -1,12 +1,12 @@
 ﻿import "./style.css";
-import SampleEnginePanel from "./ui/SampleEnginePanel.jsx";
+import MixerProjectPanel from "./ui/MixerProjectPanel.jsx";
 
 export default function App() {
   return (
     <main>
       <h1>Universal Arranger OS</h1>
-      <p className="ok">Sample Streaming Foundation Online</p>
-      <SampleEnginePanel />
+      <p className="ok">Professional Mixer + Project System Online</p>
+      <MixerProjectPanel />
     </main>
   );
 }
