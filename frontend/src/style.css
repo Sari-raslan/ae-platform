@@ -35,15 +35,15 @@ main {
   background: #091023;
 }
 
-.toolbar,
-.keys {
+.toolbar {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
   margin: 14px 0;
 }
 
-button {
+button,
+.fileButton {
   border: 0;
   padding: 12px 18px;
   border-radius: 10px;
@@ -51,23 +51,20 @@ button {
   color: #050816;
   cursor: pointer;
   font-weight: bold;
+  display: inline-block;
 }
 
-button:hover {
+button:hover,
+.fileButton:hover {
   background: #9cffb0;
 }
 
-input {
-  display: block;
-  margin: 8px 0 14px;
+input[type="range"] {
   width: 100%;
 }
 
-pre {
-  white-space: pre-wrap;
-  background: #02040a;
-  padding: 16px;
-  border-radius: 12px;
-  min-height: 180px;
-  overflow: auto;
+.sampleSlot {
+  border-top: 1px solid #2a3350;
+  padding-top: 14px;
+  margin-top: 14px;
 }
