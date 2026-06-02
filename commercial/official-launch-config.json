@@ -1,13 +1,7 @@
 ﻿{
   "product": "Universal Arranger OS",
-  "version": "8.2.0",
+  "version": "8.3.0",
   "channel": "launch-candidate",
   "closedBeta": true,
-  "publicLaunch": false,
-  "payments": {
-    "stripe": "env-required",
-    "paypal": "env-required"
-  },
-  "licenseServer": "local-foundation",
-  "secretsPolicy": "local-env-only"
+  "publicLaunch": false
 }
