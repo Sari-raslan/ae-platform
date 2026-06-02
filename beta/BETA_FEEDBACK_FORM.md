@@ -18,6 +18,8 @@ Audio Interface:
 [ ] Arranger works
 [ ] Samples load
 [ ] Project save/load works
+[ ] License activation works
+[ ] Checkout page works
 
 ## Problems
 

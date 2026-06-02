@@ -2,11 +2,11 @@
 
 Universal Arranger OS may collect optional beta feedback.
 
-No payment card information is stored inside the desktop application.
+No payment card information is stored inside the desktop app.
 
-Payments should be processed securely through Stripe or PayPal.
+Payments must be processed through Stripe, PayPal, or another secure provider.
 
-License activation data may be stored locally on the user's device.
+License data may be stored locally for activation status.
 
 Contact:
 support@uaos.app
