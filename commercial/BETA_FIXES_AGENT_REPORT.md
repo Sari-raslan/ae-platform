@@ -1,12 +1,12 @@
 ﻿# UAOS Beta Fixes Agent Report
 
-Generated: 06/02/2026 12:59:10
+Generated: 06/02/2026 13:02:49
 
 | Check | Status |
 |---|---|
 | Frontend Build | PASS |
 | Release Folder | PASS |
-| EXE Count | 0 |
+| EXE Count | 1 |
 | Tester Package | PASS |
 | Beta Feedback Form | PASS |
 | Issue Tracker | PASS |
