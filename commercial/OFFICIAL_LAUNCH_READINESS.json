@@ -1,0 +1,15 @@
+﻿{
+  "product": "Universal Arranger OS",
+  "version": "8.0.0",
+  "phase": "official-launch-candidate",
+  "generatedAt": "2026-06-02T02:06:24",
+  "frontendBuild": true,
+  "exeCount": 0,
+  "legalDocs": true,
+  "betaFeedback": true,
+  "commercialWebsite": true,
+  "localLicenseServer": true,
+  "stripeCheckoutFoundation": true,
+  "publicLaunch": false,
+  "reasonPublicLaunchFalse": "Requires production keys, hosting, code signing, QA, and GitHub release artifact upload"
+}
