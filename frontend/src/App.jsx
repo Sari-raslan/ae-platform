@@ -1,12 +1,12 @@
 ﻿import "./style.css";
-import StyleProPanel from "./ui/StyleProPanel.jsx";
+import ProSimulationPanel from "./ui/ProSimulationPanel.jsx";
 
 export default function App() {
   return (
     <main>
       <h1>Universal Arranger OS</h1>
-      <p className="ok">Style Parser + MIDI Routing + Sample Library Online</p>
-      <StyleProPanel />
+      <p className="ok">Official Pro Simulation Launch Mode</p>
+      <ProSimulationPanel />
     </main>
   );
 }
