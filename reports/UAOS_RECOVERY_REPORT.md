@@ -1,10 +1,10 @@
 ﻿# UAOS Recovery Report
 
-Generated: 06/02/2026 12:59:15
+Generated: 06/02/2026 13:02:54
 
 | Check | Status |
 |---|---|
-| Frontend Build | PASS |
+| Frontend Build | FAIL |
 | EXE Count | 1 |
 | Git Branch | main |
 | Recovery | DONE |
