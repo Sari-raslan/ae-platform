@@ -1,16 +1,15 @@
 ﻿# Universal Arranger OS  Public Simulation / Pro Launch
 
 ## Status
-Public Simulation Launch Candidate
+PUBLIC SIMULATION / PRO RELEASE CANDIDATE READY
 
-## What users get
-- Full interface access
-- Simulation mode enabled
-- Pro features visible
-- Save / export / render / production actions locked until Pro activation
+## Files
 
-## Pro unlock
-Users upgrade to Pro to unlock:
+
+## Simulation Mode
+Users can download and explore the full interface.
+
+Locked until Pro:
 - Save projects
 - Export songs
 - Create sets
@@ -18,8 +17,8 @@ Users upgrade to Pro to unlock:
 - Export MIDI
 - Production workflow
 
-## Files
+## Pro Unlock
+After payment/license activation, Pro unlocks real production features.
 
-
-## Notes
-Do not commit EXE or ZIP files to Git. Upload release artifacts to GitHub Releases.
+## Do Not Commit
+EXE/ZIP/release artifacts are local only. Upload them to GitHub Releases.
