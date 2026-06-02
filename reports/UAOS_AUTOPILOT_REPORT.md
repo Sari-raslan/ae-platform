@@ -1,18 +1,14 @@
 ﻿# UAOS AUTOPILOT REPORT
 
-Generated: 06/02/2026 09:17:37
+Generated: 06/02/2026 09:48:16
 
 ## Build
 Frontend: PASS
 
 ## EXE
-Count: 4
+Count: 0
 
 ## EXE Files
-C:\Users\ssare\keyboard-manager\release\Universal Arranger OS 1.0.0.exe
-C:\Users\ssare\keyboard-manager\release\Universal Arranger OS Setup 1.0.0.exe
-C:\Users\ssare\keyboard-manager\release\win-unpacked\Universal Arranger OS.exe
-C:\Users\ssare\keyboard-manager\release\win-unpacked\resources\elevate.exe
 
 
 ## Current Phase
