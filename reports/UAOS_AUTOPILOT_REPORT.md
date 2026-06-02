@@ -1,14 +1,15 @@
 ﻿# UAOS AUTOPILOT REPORT
 
-Generated: 06/02/2026 09:56:59
+Generated: 06/02/2026 12:59:11
 
 ## Build
 Frontend: PASS
 
 ## EXE
-Count: 0
+Count: 1
 
 ## EXE Files
+C:\Users\ssare\keyboard-manager\release\win-unpacked\electron.exe
 
 
 ## Current Phase
