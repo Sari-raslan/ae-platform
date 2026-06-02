@@ -1,0 +1,10 @@
+﻿{
+  "product": "Universal Arranger OS",
+  "version": "7.7.0",
+  "phase": "post-launch",
+  "autoUpdate": "foundation",
+  "feedback": "enabled-local",
+  "purchase": "local-server-foundation",
+  "payments": "stripe-ready-when-env-configured",
+  "generatedAt": "2026-06-02T02:00:48"
+}
